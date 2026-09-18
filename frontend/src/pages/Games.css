@@ -1,0 +1,608 @@
+ 
+/* =========================================
+   GAMES PAGE
+========================================= */
+
+.games-page {
+    min-height: 100vh;
+    padding: 35px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.12), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(236, 72, 153, 0.12), transparent 30%),
+        #f7f9ff;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.games-hero {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+
+    padding: 35px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f3f0ff
+        );
+
+    border: 1px solid rgba(99, 102, 241, 0.12);
+
+    box-shadow:
+        0 20px 50px rgba(50, 50, 100, 0.08);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+/* HERO CONTENT */
+
+.games-hero-content {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+
+.games-emoji {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 44px;
+
+    box-shadow:
+        0 15px 30px rgba(99, 102, 241, 0.25);
+
+    animation: gameFloat 3s ease-in-out infinite;
+}
+
+
+.games-hero h1 {
+    margin: 0;
+
+    font-size: 38px;
+    font-weight: 800;
+
+    color: #17172b;
+}
+
+
+.games-hero h1 span {
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #ec4899
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.games-hero p {
+    margin: 10px 0 0;
+
+    color: #6b7280;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   GAME STATS
+========================================= */
+
+.games-stats {
+    display: flex;
+    gap: 15px;
+}
+
+
+.game-stat {
+    min-width: 90px;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+.game-stat span {
+    display: block;
+
+    font-size: 23px;
+
+    margin-bottom: 5px;
+}
+
+
+.game-stat strong {
+    display: block;
+
+    font-size: 20px;
+
+    color: #4f46e5;
+}
+
+
+.game-stat small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.games-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 28px;
+
+    color: #18181b;
+}
+
+
+.section-heading p {
+    margin-top: 6px;
+
+    color: #71717a;
+}
+
+
+/* =========================================
+   GAME GRID
+========================================= */
+
+.games-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =========================================
+   GAME CARD
+========================================= */
+
+.game-card {
+    position: relative;
+
+    padding: 28px;
+
+    min-height: 330px;
+
+    border-radius: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    box-shadow:
+        0 12px 35px rgba(30, 30, 70, 0.07);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.game-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    right: -55px;
+    top: -55px;
+
+    opacity: 0.12;
+
+    background: currentColor;
+}
+
+
+.game-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 22px 45px rgba(30, 30, 70, 0.13);
+}
+
+
+/* =========================================
+   GAME COLORS
+========================================= */
+
+.game-green {
+    color: #16a34a;
+}
+
+
+.game-purple {
+    color: #7c3aed;
+}
+
+
+.game-blue {
+    color: #2563eb;
+}
+
+
+.game-orange {
+    color: #ea580c;
+}
+
+
+.game-pink {
+    color: #db2777;
+}
+
+
+/* =========================================
+   GAME ICON
+========================================= */
+
+.game-card-icon {
+    width: 72px;
+    height: 72px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+
+    background: rgba(99, 102, 241, 0.08);
+
+    margin-bottom: 18px;
+
+    transition: transform 0.25s ease;
+}
+
+
+.game-card:hover .game-card-icon {
+    transform:
+        rotate(-5deg)
+        scale(1.08);
+}
+
+
+/* =========================================
+   DIFFICULTY
+========================================= */
+
+.game-difficulty {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    background: rgba(99, 102, 241, 0.08);
+
+    color: #6366f1;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.game-card-content h3 {
+    margin: 14px 0 8px;
+
+    font-size: 23px;
+
+    color: #18181b;
+}
+
+
+.game-card-content p {
+    margin: 0;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+
+    color: #71717a;
+}
+
+
+/* =========================================
+   REWARD
+========================================= */
+
+.game-reward {
+    margin-top: 18px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #ca8a04;
+}
+
+
+.game-reward span {
+    font-size: 18px;
+}
+
+
+/* =========================================
+   PLAY BUTTON
+========================================= */
+
+.game-play-button {
+    margin-top: 18px;
+
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border-radius: 13px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-decoration: none;
+
+    background: #18181b;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.game-play-button:hover {
+    transform: translateX(3px);
+
+    background: #4f46e5;
+}
+
+
+.game-play-button span {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   MOTIVATION
+========================================= */
+
+.games-motivation {
+    max-width: 1200px;
+
+    margin: 45px auto 20px;
+
+    padding: 25px 30px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #fdf2f8
+        );
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.motivation-icon {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    font-size: 30px;
+
+    flex-shrink: 0;
+}
+
+
+.games-motivation h2 {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #312e81;
+}
+
+
+.games-motivation p {
+    margin: 7px 0 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes gameFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .games-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .games-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .games-stats {
+        width: 100%;
+    }
+
+    .game-stat {
+        flex: 1;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .games-page {
+        padding: 18px;
+    }
+
+    .games-hero {
+        padding: 25px;
+
+        border-radius: 22px;
+    }
+
+    .games-hero-content {
+        align-items: flex-start;
+    }
+
+    .games-emoji {
+        width: 65px;
+        height: 65px;
+
+        font-size: 32px;
+    }
+
+    .games-hero h1 {
+        font-size: 28px;
+    }
+
+    .games-hero p {
+        font-size: 14px;
+    }
+
+    .games-stats {
+        gap: 8px;
+    }
+
+    .game-stat {
+        min-width: 0;
+
+        padding: 10px;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-card {
+        min-height: auto;
+    }
+
+    .games-motivation {
+        align-items: flex-start;
+
+        padding: 20px;
+    }
+}
+ 

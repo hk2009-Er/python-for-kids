@@ -1,0 +1,283 @@
+/* =========================================
+   EXERCISES PAGE
+========================================= */
+
+.exercises-page {
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.exercises-hero {
+    padding: 65px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f0f9ff
+        );
+}
+
+
+.exercises-hero-icon {
+    font-size: 60px;
+
+    margin-bottom: 8px;
+
+    animation: puzzleFloat 3s ease-in-out infinite;
+}
+
+
+@keyframes puzzleFloat {
+
+    0%,
+    100% {
+        transform: rotate(-3deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(3deg) translateY(-9px);
+    }
+
+}
+
+
+.exercises-hero h1 {
+    font-size: 42px;
+
+    color: #1e293b;
+
+    margin-bottom: 8px;
+}
+
+
+.exercises-hero p {
+    color: #64748b;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.exercises-content {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 55px 20px 80px;
+}
+
+
+.exercise-intro {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.exercise-intro h2 {
+    color: #1e293b;
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.exercise-intro p {
+    color: #64748b;
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.exercises-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.exercise-card {
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 19px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.exercise-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+.exercise-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+.exercise-icon {
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1f5f9;
+
+    border-radius: 15px;
+
+    font-size: 30px;
+}
+
+
+.difficulty {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.difficulty.easy {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+
+.difficulty.medium {
+    background: #fff7ed;
+
+    color: #c2410c;
+}
+
+
+.exercise-card h3 {
+    color: #1e293b;
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+
+.exercise-topic {
+    color: #6366f1;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+.exercise-card > p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    min-height: 68px;
+
+    margin-bottom: 20px;
+}
+
+
+.exercise-button {
+    display: inline-block;
+
+    padding: 10px 15px;
+
+    border-radius: 9px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.exercise-button:hover {
+    background: #4338ca;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .exercises-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .exercises-hero h1 {
+        font-size: 34px;
+    }
+
+
+    .exercises-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

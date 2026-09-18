@@ -1,0 +1,330 @@
+/* =========================================
+   LEARN PAGE
+========================================= */
+
+.learn-page {
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.learn-hero {
+    padding: 65px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f0f9ff
+        );
+}
+
+
+.learn-hero-content {
+    max-width: 800px;
+
+    margin: auto;
+}
+
+
+.learn-hero-emoji {
+    font-size: 60px;
+
+    margin-bottom: 10px;
+
+    animation: learnFloat 3s ease-in-out infinite;
+}
+
+
+@keyframes learnFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+
+
+.learn-hero h1 {
+    font-size: 43px;
+
+    color: #1e293b;
+
+    margin-bottom: 8px;
+}
+
+
+.learn-hero p {
+    color: #64748b;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.learn-content {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 50px 20px 80px;
+}
+
+
+/* =========================================
+   FILTER BUTTONS
+========================================= */
+
+.level-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 40px;
+}
+
+
+.level-button {
+    padding: 11px 18px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    border: 1px solid #dbe2ea;
+
+    color: #475569;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.level-button:hover {
+    border-color: #a5b4fc;
+
+    color: #4f46e5;
+
+    transform: translateY(-2px);
+}
+
+
+.level-button.active {
+    background: #4f46e5;
+
+    color: white;
+
+    border-color: #4f46e5;
+}
+
+
+/* =========================================
+   TOPICS
+========================================= */
+
+.topics-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+.topic-card {
+    position: relative;
+
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.topic-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+
+.topic-icon {
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1f5f9;
+
+    border-radius: 17px;
+
+    font-size: 32px;
+
+    margin-bottom: 14px;
+}
+
+
+.topic-level {
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.topic-card h2 {
+    font-size: 20px;
+
+    color: #1e293b;
+
+    margin-bottom: 8px;
+}
+
+
+.topic-card > p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    min-height: 67px;
+
+    margin-bottom: 20px;
+}
+
+
+.topic-footer {
+    padding-top: 15px;
+
+    border-top: 1px solid #f1f5f9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.topic-footer > span {
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.learn-topic-button {
+    padding: 9px 13px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.learn-topic-button:hover {
+    background: #4338ca;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+
+    .topics-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .learn-hero {
+        padding: 50px 20px;
+    }
+
+
+    .learn-hero h1 {
+        font-size: 34px;
+    }
+
+
+    .learn-hero p {
+        font-size: 16px;
+    }
+
+
+    .topics-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .topic-card {
+        padding: 22px;
+    }
+
+}

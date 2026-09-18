@@ -1,0 +1,107 @@
+/* =========================================
+   APPLICATION
+========================================= */
+
+.app {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    flex: 1;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   404 PAGE
+========================================= */
+
+.not-found {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+
+.not-found h1 {
+    font-size: 70px;
+
+    margin-bottom: 10px;
+}
+
+
+.not-found h2 {
+    font-size: 28px;
+
+    margin-bottom: 10px;
+
+    color: #1f2937;
+}
+
+
+.not-found p {
+    color: #64748b;
+
+    margin-bottom: 25px;
+}
+
+
+.not-found a {
+    display: inline-block;
+
+    padding: 12px 24px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+
+.not-found a:hover {
+    transform: translateY(-2px);
+
+    background: #4338ca;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .not-found h1 {
+        font-size: 52px;
+    }
+
+    .not-found h2 {
+        font-size: 22px;
+    }
+
+}

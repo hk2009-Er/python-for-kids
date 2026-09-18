@@ -1,0 +1,303 @@
+/* =========================================
+   ABOUT PAGE
+========================================= */
+
+.about-page {
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.about-hero {
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f0f9ff
+        );
+}
+
+
+.about-logo {
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 25px;
+
+    background: white;
+
+    font-size: 48px;
+
+    box-shadow:
+        0 10px 30px rgba(79, 70, 229, 0.1);
+
+    animation: aboutSnake 3s ease-in-out infinite;
+}
+
+
+@keyframes aboutSnake {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg) translateY(-7px);
+    }
+
+}
+
+
+.about-hero h1 {
+    font-size: 42px;
+
+    color: #1e293b;
+
+    margin-bottom: 8px;
+}
+
+
+.about-hero p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #64748b;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.about-content {
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding: 60px 20px 90px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.about-card {
+    padding: 28px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.about-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+
+.about-card-icon {
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f1f5f9;
+
+    border-radius: 17px;
+
+    font-size: 31px;
+
+    margin-bottom: 17px;
+}
+
+
+.about-card h2 {
+    color: #1e293b;
+
+    font-size: 21px;
+
+    margin-bottom: 10px;
+}
+
+
+.about-card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   VALUES
+========================================= */
+
+.about-values {
+    grid-column: 1 / -1;
+
+    margin-top: 25px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 22px;
+}
+
+
+.about-values > h2 {
+    font-size: 27px;
+
+    color: #1e293b;
+
+    margin-bottom: 30px;
+}
+
+
+.values-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.values-grid > div {
+    padding: 15px;
+}
+
+
+.values-grid span {
+    display: block;
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+
+.values-grid h3 {
+    color: #334155;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.values-grid p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .about-content {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .about-values {
+        grid-column: 1 / -1;
+    }
+
+
+    .values-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .about-hero h1 {
+        font-size: 33px;
+    }
+
+
+    .about-hero p {
+        font-size: 16px;
+    }
+
+
+    .about-content {
+        grid-template-columns: 1fr;
+
+        padding-top: 40px;
+    }
+
+
+    .about-values {
+        padding: 28px 20px;
+    }
+
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
