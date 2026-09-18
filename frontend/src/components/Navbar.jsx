@@ -56,11 +56,14 @@ class Navbar extends Component {
                     >
 
                         <span className="logo-python">
-                            🐍
+                             <img
+        src="/python-logo.png"
+        alt="Python for Kids logo"
+    />
                         </span>
 
                         <span className="logo-text">
-                            Python
+                            Python For
                             <span>Kids</span>
                         </span>
 

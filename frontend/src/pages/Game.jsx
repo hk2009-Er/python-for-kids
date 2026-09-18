@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { Link, useParams } from "react-router-dom";
 import lessonData from "../data/lessonData";
 import "./Game.css";
-
+import SnakeGame from "./SnakeGame";
+import CodePuzzle from "./CodePuzzle";
 
 class Game extends Component {
 
@@ -591,6 +592,12 @@ class Game extends Component {
 
     render() {
 
+     if (this.props.gameId === "python-snake") {
+        return <SnakeGame />;
+        }
+    if (this.props.gameId === "code-puzzle") {
+            return <CodePuzzle />;
+        }
         const game = this.getGameInfo();
 
         if (!game) {

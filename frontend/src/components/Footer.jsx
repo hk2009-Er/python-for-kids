@@ -1,53 +1,86 @@
-function Footer() {
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "../styles/Footer.css";
 
-    return (
+class Footer extends Component {
 
-        <footer className="footer">
+    render() {
+        return (
+            <footer className="site-footer">
 
-            <div className="container footer-inner">
+                <div className="footer-container">
 
-                <div>
+                    <div className="footer-brand">
 
-                    <h3>🐍 PythonKids</h3>
+                        <div className="footer-logo">
+                            🐍
+                        </div>
+
+                        <div>
+                            <h2>Python for Kids</h2>
+
+                            <p>
+                                Learn Python through lessons,
+                                quizzes, exercises and games.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div className="footer-section">
+
+                        <h3>Learn</h3>
+
+                        <Link to="/learn">
+                            📚 Learn Python
+                        </Link>
+
+                        <Link to="/quizzes">
+                            🧠 Quizzes
+                        </Link>
+
+                        <Link to="/games">
+                            🎮 Games
+                        </Link>
+
+                    </div>
+
+                    <div className="footer-section">
+
+                        <h3>Website</h3>
+
+                        <Link to="/about">
+                            ℹ️ About Us
+                        </Link>
+
+                        <Link to="/contact">
+                            📩 Contact
+                        </Link>
+
+                        <Link to="/privacy">
+                            🔒 Privacy Policy
+                        </Link>
+
+                        <Link to="/terms">
+                            📜 Terms & Conditions
+                        </Link>
+
+                    </div>
+
+                </div>
+
+                <div className="footer-bottom">
 
                     <p>
-                        Learn Python through fun,
-                        animation and interactive projects.
+                        © {new Date().getFullYear()} Python for Kids.
+                        All rights reserved.
                     </p>
 
                 </div>
 
-                <div className="footer-links">
-
-                    <a href="/about">
-                        About
-                    </a>
-
-                    <a href="#">
-                        Privacy Policy
-                    </a>
-
-                    <a href="#">
-                        Terms
-                    </a>
-
-                    <a href="#">
-                        Contact
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div className="copyright">
-
-                © 2026 PythonKids. All rights reserved.
-
-            </div>
-
-        </footer>
-
-    );
+            </footer>
+        );
+    }
 }
 
 export default Footer;

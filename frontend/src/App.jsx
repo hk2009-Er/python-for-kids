@@ -12,12 +12,15 @@ import Learn from "./pages/Learn";
 import Lesson from "./pages/Lesson";
 import Exercises from "./pages/Exercises";
 import Projects from "./pages/Projects";
-import Quizzes from "./pages/Quizzes";
-import About from "./pages/About";
+import Quizzes from "./pages/Quizzes"; 
 import Games from "./pages/Games";
 import Game from "./pages/Game";
 import Quiz from "./pages/Quiz";
 import "./App.css";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 function App() {
 
@@ -109,7 +112,13 @@ function App() {
                                 </div>
                             }
                         />
+                    <Route path="/about" element={<About />} />
 
+                    <Route path="/contact" element={<Contact />} />
+
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
+
+                    <Route path="/terms" element={<Terms />} />
                     </Routes>
 
                 </main>
