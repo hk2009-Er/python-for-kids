@@ -1,75 +1,63 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import lessonData from "../data/lessonData";
 import "./Exercises.css";
 
 
 class Exercises extends Component {
 
+    getAllExercises = () => {
+
+        const allExercises = [];
+
+        lessonData.forEach((topic) => {
+
+            topic.exercises.forEach((exercise) => {
+
+                allExercises.push({
+                    ...exercise,
+                    topic: topic.title,
+                    slug: topic.slug
+                });
+
+            });
+
+        });
+
+        return allExercises;
+    };
+
+
+    getExerciseEmoji = (index) => {
+
+        const emojis = [
+            "🟢",
+            "📦",
+            "🔢",
+            "🔄",
+            "🍎",
+            "⚙️",
+            "🐍",
+            "💡",
+            "🎯",
+            "🚀"
+        ];
+
+        return emojis[index % emojis.length];
+    };
+
+
     render() {
 
-        const exercises = [
-
-            {
-                emoji: "🟢",
-                title: "Print Your Name",
-                difficulty: "Easy",
-                topic: "Python Basics",
-                description:
-                    "Write a Python program that prints your name."
-            },
-
-            {
-                emoji: "📦",
-                title: "Variable Challenge",
-                difficulty: "Easy",
-                topic: "Variables",
-                description:
-                    "Create variables for your name, age and favorite color."
-            },
-
-            {
-                emoji: "🔢",
-                title: "Number Checker",
-                difficulty: "Easy",
-                topic: "If & Else",
-                description:
-                    "Check whether a number is positive or negative."
-            },
-
-            {
-                emoji: "🔄",
-                title: "Counting Robot",
-                difficulty: "Easy",
-                topic: "Loops",
-                description:
-                    "Use a loop to count from 1 to 10."
-            },
-
-            {
-                emoji: "🍎",
-                title: "Fruit Basket",
-                difficulty: "Medium",
-                topic: "Lists",
-                description:
-                    "Create a list of fruits and display them."
-            },
-
-            {
-                emoji: "⚙️",
-                title: "Greeting Machine",
-                difficulty: "Medium",
-                topic: "Functions",
-                description:
-                    "Create a function that greets a user."
-            }
-
-        ];
+        const exercises = this.getAllExercises();
 
 
         return (
 
             <div className="exercises-page">
+
+                {/* HERO */}
 
                 <section className="exercises-hero">
 
@@ -89,6 +77,8 @@ class Exercises extends Component {
                 </section>
 
 
+                {/* CONTENT */}
+
                 <section className="exercises-content">
 
                     <div className="exercise-intro">
@@ -105,64 +95,62 @@ class Exercises extends Component {
                     </div>
 
 
+                    {/* EXERCISES */}
+
                     <div className="exercises-grid">
 
-                        {exercises.map(
-                            (exercise, index) => (
+                        {exercises.map((exercise, index) => (
 
-                                <div
-                                    className="exercise-card"
-                                    key={index}
-                                >
+                            <div
+                                className="exercise-card"
+                                key={exercise.id}
+                            >
 
-                                    <div className="exercise-top">
+                                <div className="exercise-top">
 
-                                        <div className="exercise-icon">
-                                            {exercise.emoji}
-                                        </div>
-
-                                        <span
-                                            className={
-                                                exercise.difficulty ===
-                                                "Easy"
-                                                    ? "difficulty easy"
-                                                    : "difficulty medium"
-                                            }
-                                        >
-                                            {exercise.difficulty}
-                                        </span>
-
+                                    <div className="exercise-icon">
+                                        {this.getExerciseEmoji(index)}
                                     </div>
 
 
-                                    <h3>
-                                        {exercise.title}
-                                    </h3>
-
-
-                                    <div className="exercise-topic">
-                                        📚 {exercise.topic}
-                                    </div>
-
-
-                                    <p>
-                                        {exercise.description}
-                                    </p>
-
-
-                                    <Link
-                                        to={`/lesson/${exercise.topic
-                                            .toLowerCase()
-                                            .replaceAll(" ", "-")}`}
-                                        className="exercise-button"
+                                    <span
+                                        className={
+                                            exercise.difficulty === "Medium"
+                                                ? "difficulty medium"
+                                                : "difficulty easy"
+                                        }
                                     >
-                                        Practice →
-                                    </Link>
+                                        {exercise.difficulty || "Easy"}
+                                    </span>
 
                                 </div>
 
-                            )
-                        )}
+
+                                <h3>
+                                    {exercise.title}
+                                </h3>
+
+
+                                <div className="exercise-topic">
+                                    📚 {exercise.topic}
+                                </div>
+
+
+                                <p>
+                                    {exercise.description}
+                                </p>
+
+
+                                <Link
+                                    to={`/lesson/${exercise.slug}`}
+                                    className="exercise-button"
+                                >
+                                    Practice →
+                                </Link>
+
+                            </div>
+
+                        ))}
 
                     </div>
 
