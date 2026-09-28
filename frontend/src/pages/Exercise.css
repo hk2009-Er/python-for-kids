@@ -1,0 +1,1272 @@
+/* =========================================
+   EXERCISE PAGE
+========================================= */
+
+.exercise-page {
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.exercise-header {
+    padding: 35px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f0f9ff
+        );
+}
+
+
+.exercise-header-inner {
+    max-width: 960px;
+
+    margin: auto;
+}
+
+
+.exercise-header .back-link {
+    display: inline-block;
+
+    margin-bottom: 22px;
+
+    color: #4f46e5;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.exercise-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.exercise-title > span {
+    flex-shrink: 0;
+
+    width: 75px;
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 20px;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+
+.exercise-title p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 2px;
+}
+
+
+.exercise-title p a {
+    color: #6366f1;
+
+    font-weight: 700;
+}
+
+
+.exercise-title p a:hover {
+    text-decoration: underline;
+}
+
+
+.exercise-title h1 {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 33px;
+
+    color: #172033;
+
+    line-height: 1.25;
+}
+
+
+.ex-solved-badge {
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    border: 1px solid #bbf7d0;
+
+    color: #15803d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.exercise-content {
+    max-width: 960px;
+
+    margin: auto;
+
+    padding: 45px 20px 80px;
+}
+
+
+.exercise-panel {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.ex-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+}
+
+
+.ex-difficulty,
+.ex-points,
+.ex-total-xp {
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.ex-difficulty.easy {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+
+.ex-difficulty.medium {
+    background: #fff7ed;
+
+    color: #c2410c;
+}
+
+
+.ex-difficulty.hard {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+.ex-points {
+    background: #fff7ed;
+
+    color: #c2410c;
+}
+
+
+.ex-total-xp {
+    margin-left: auto;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+}
+
+
+/* =========================================
+   TASK
+========================================= */
+
+.ex-task {
+    margin-bottom: 24px;
+
+    padding: 20px 22px;
+
+    border-radius: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+}
+
+
+.ex-task h2 {
+    color: #1e293b;
+
+    font-size: 19px;
+
+    margin-bottom: 6px;
+}
+
+
+.ex-task p {
+    color: #475569;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+
+    white-space: pre-line;
+}
+
+
+/* =========================================
+   TURTLE NOTE
+========================================= */
+
+.ex-turtle-note {
+    display: flex;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    color: #166534;
+}
+
+
+.ex-turtle-icon {
+    font-size: 40px;
+
+    line-height: 1;
+}
+
+
+.ex-turtle-note p {
+    margin: 6px 0 14px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   EDITOR
+========================================= */
+
+.ex-editor {
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: #111827;
+
+    margin-bottom: 18px;
+
+    border: 2px solid transparent;
+
+    transition: border-color 0.2s ease;
+}
+
+
+.ex-editor:focus-within {
+    border-color: #818cf8;
+}
+
+
+.ex-editor-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px 16px;
+
+    background: #1f2937;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.ex-editor-tip {
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.ex-editor-body {
+    display: flex;
+}
+
+
+.ex-gutter,
+.ex-textarea {
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    padding-top: 18px;
+
+    padding-bottom: 18px;
+}
+
+
+.ex-gutter {
+    flex-shrink: 0;
+
+    min-width: 46px;
+
+    padding-left: 12px;
+
+    padding-right: 10px;
+
+    overflow: hidden;
+
+    text-align: right;
+
+    color: #4b5563;
+
+    background: #0f172a;
+
+    user-select: none;
+
+    white-space: pre;
+}
+
+
+.ex-textarea {
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 200px;
+
+    padding-left: 16px;
+
+    padding-right: 16px;
+
+    border: none;
+
+    outline: none;
+
+    resize: vertical;
+
+    background: transparent;
+
+    color: #e2e8f0;
+
+    caret-color: #facc15;
+
+    tab-size: 4;
+
+    white-space: pre;
+
+    overflow: auto;
+}
+
+
+.ex-textarea::selection {
+    background: #4f46e5;
+
+    color: white;
+}
+
+
+/* =========================================
+   STDIN
+========================================= */
+
+.ex-input {
+    margin-bottom: 18px;
+}
+
+
+.ex-input label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.ex-input label span {
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.ex-input textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    resize: vertical;
+
+    outline: none;
+}
+
+
+.ex-input textarea:focus {
+    border-color: #818cf8;
+
+    background: white;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.ex-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.ex-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.ex-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+
+.ex-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+
+.ex-btn.run {
+    background: #16a34a;
+
+    color: white;
+}
+
+
+.ex-btn.run:hover:not(:disabled) {
+    background: #15803d;
+}
+
+
+.ex-btn.primary {
+    background: #4f46e5;
+
+    color: white;
+}
+
+
+.ex-btn.primary:hover:not(:disabled) {
+    background: #4338ca;
+}
+
+
+.ex-btn.success {
+    background: #16a34a;
+
+    color: white;
+}
+
+
+.ex-btn.success:hover:not(:disabled) {
+    background: #15803d;
+}
+
+
+.ex-btn.hint {
+    background: #fef9c3;
+
+    color: #854d0e;
+}
+
+
+.ex-btn.hint:hover,
+.ex-btn.hint.active {
+    background: #fde68a;
+}
+
+
+.ex-btn.secondary {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+
+.ex-btn.secondary:hover:not(:disabled),
+.ex-btn.secondary.active {
+    background: #e2e8f0;
+}
+
+
+.ex-btn.ghost {
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    color: #64748b;
+}
+
+
+.ex-btn.ghost:hover:not(:disabled) {
+    border-color: #a5b4fc;
+
+    color: #4f46e5;
+}
+
+
+/* =========================================
+   HINT & ANSWER
+========================================= */
+
+.ex-hint {
+    margin-bottom: 18px;
+
+    padding: 15px 18px;
+
+    border-radius: 13px;
+
+    background: #fefce8;
+
+    border: 1px solid #fde68a;
+
+    color: #854d0e;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    animation: exPop 0.3s ease;
+}
+
+
+.ex-answer {
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background: #111827;
+
+    animation: exPop 0.3s ease;
+}
+
+
+.ex-answer-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px 16px;
+
+    background: #1f2937;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.ex-answer-header button {
+    padding: 6px 11px;
+
+    border-radius: 8px;
+
+    background: #374151;
+
+    color: #e5e7eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.ex-answer-header button:hover {
+    background: #4f46e5;
+}
+
+
+.ex-answer pre {
+    padding: 18px 20px;
+
+    overflow-x: auto;
+
+    color: #e2e8f0;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+.ex-answer p {
+    padding: 0 20px 14px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   OUTPUT
+========================================= */
+
+.ex-output {
+    overflow: hidden;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    background: #f1f5f9;
+
+    border: 1px solid #e2e8f0;
+}
+
+
+.ex-output-header {
+    padding: 10px 15px;
+
+    background: #e2e8f0;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.ex-output-body {
+    min-height: 70px;
+
+    max-height: 360px;
+
+    overflow: auto;
+
+    padding: 16px 18px;
+}
+
+
+.ex-output-text {
+    color: #1e293b;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+.ex-output-placeholder {
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    font-style: italic;
+}
+
+
+.ex-output-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #4f46e5;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.ex-snake {
+    display: inline-block;
+
+    font-size: 22px;
+
+    animation: exWiggle 0.8s ease-in-out infinite;
+}
+
+
+@keyframes exWiggle {
+
+    0%,
+    100% {
+        transform: rotate(-12deg) translateX(0);
+    }
+
+    50% {
+        transform: rotate(12deg) translateX(4px);
+    }
+
+}
+
+
+.ex-spinner {
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    border: 3px solid #c7d2fe;
+
+    border-top-color: #4f46e5;
+
+    animation: exSpin 0.8s linear infinite;
+}
+
+
+@keyframes exSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.ex-error {
+    margin-top: 12px;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    font-size: 14px;
+}
+
+
+.ex-error:first-child {
+    margin-top: 0;
+}
+
+
+.ex-error strong {
+    display: block;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    word-break: break-word;
+}
+
+
+.ex-error p {
+    margin-top: 6px;
+
+    color: #7f1d1d;
+
+    line-height: 1.6;
+}
+
+
+.ex-notice {
+    padding: 11px 16px;
+
+    background: #eff6ff;
+
+    border-top: 1px solid #dbeafe;
+
+    color: #1d4ed8;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.ex-success {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 26px 20px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf5,
+            #f0f9ff
+        );
+
+    border: 1px solid #bbf7d0;
+
+    color: #15803d;
+
+    animation: exPop 0.4s ease;
+}
+
+
+.ex-success-title {
+    font-size: 24px;
+
+    font-weight: 800;
+
+    margin-bottom: 4px;
+
+    animation: exBounce 0.8s ease 2;
+}
+
+
+.ex-success p {
+    margin-bottom: 15px;
+
+    color: #166534;
+
+    font-weight: 600;
+}
+
+
+.ex-confetti {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+
+.ex-confetti span {
+    position: absolute;
+
+    top: -30px;
+
+    left: calc(8% + var(--i) * 12%);
+
+    font-size: 22px;
+
+    animation: exConfetti 1.8s ease-in forwards;
+
+    animation-delay: calc(var(--i) * 0.09s);
+
+    opacity: 0;
+}
+
+
+@keyframes exConfetti {
+
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(220px) rotate(300deg);
+    }
+
+}
+
+
+@keyframes exBounce {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+}
+
+
+@keyframes exPop {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+.ex-fail {
+    padding: 16px 18px;
+
+    border-radius: 14px;
+
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+
+    color: #c2410c;
+
+    animation: exPop 0.3s ease;
+}
+
+
+.ex-compare p {
+    margin: 6px 0 10px;
+
+    color: #9a3412;
+
+    font-size: 14px;
+}
+
+
+.ex-compare-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+.ex-compare-grid > div {
+    overflow: hidden;
+
+    border-radius: 11px;
+
+    background: white;
+
+    border: 1px solid #fed7aa;
+}
+
+
+.ex-compare-grid span {
+    display: block;
+
+    padding: 6px 12px;
+
+    background: #ffedd5;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.ex-compare-grid pre {
+    padding: 10px 12px;
+
+    color: #1e293b;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+.ex-compare-tip {
+    margin-bottom: 0 !important;
+
+    font-size: 13px !important;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.ex-nav {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+.ex-nav > :first-child {
+    justify-self: start;
+}
+
+
+.ex-nav > :last-child {
+    justify-self: end;
+}
+
+
+.ex-nav .ex-btn {
+    max-width: 100%;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   NOT FOUND
+========================================= */
+
+.exercise-not-found {
+    text-align: center;
+
+    padding: 50px 30px;
+}
+
+
+.exercise-not-found-icon {
+    font-size: 56px;
+
+    margin-bottom: 8px;
+}
+
+
+.exercise-not-found h2 {
+    color: #1e293b;
+
+    margin-bottom: 8px;
+}
+
+
+.exercise-not-found p {
+    color: #64748b;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .exercise-header {
+        padding: 25px 18px;
+    }
+
+
+    .exercise-title {
+        gap: 12px;
+    }
+
+
+    .exercise-title > span {
+        width: 60px;
+
+        height: 60px;
+
+        font-size: 30px;
+    }
+
+
+    .exercise-title h1 {
+        font-size: 24px;
+    }
+
+
+    .exercise-panel {
+        padding: 20px;
+    }
+
+
+    .ex-total-xp {
+        margin-left: 0;
+    }
+
+
+    .ex-editor-tip {
+        display: none;
+    }
+
+
+    .ex-gutter,
+    .ex-textarea {
+        font-size: 14px;
+    }
+
+
+    .ex-actions .ex-btn {
+        flex: 1 1 calc(50% - 10px);
+    }
+
+
+    .ex-compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .ex-nav {
+        grid-template-columns: 1fr;
+    }
+
+
+    .ex-nav > * {
+        justify-self: stretch !important;
+    }
+
+
+    .ex-nav > span:empty {
+        display: none;
+    }
+
+}

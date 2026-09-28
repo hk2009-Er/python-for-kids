@@ -1,166 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import puzzleData from "../data/puzzleData";
 import "./CodePuzzle.css";
 
 class CodePuzzle extends Component {
     constructor(props) {
         super(props);
 
-        this.puzzles = [
-            {
-                id: 1,
-                title: "Print Your Name",
-                description:
-                    "Arrange the Python code to print a name.",
-                code: [
-                    'print("Python")',
-                    'name = "Python"'
-                ],
-                answer: [
-                    'name = "Python"',
-                    'print("Python")'
-                ],
-                hint: "First create the variable, then print it.",
-                explanation:
-                    "We create the variable first and then use print() to display its value."
-            },
-
-            {
-                id: 2,
-                title: "Create a Greeting",
-                description:
-                    "Arrange the code to create a friendly greeting.",
-                code: [
-                    'print("Hello", name)',
-                    'name = "Alex"'
-                ],
-                answer: [
-                    'name = "Alex"',
-                    'print("Hello", name)'
-                ],
-                hint: "Python needs to know what name is before printing it.",
-                explanation:
-                    "The variable must be created before we use it."
-            },
-
-            {
-                id: 3,
-                title: "Add Two Numbers",
-                description:
-                    "Put the code in the correct order.",
-                code: [
-                    "result = a + b",
-                    "a = 10",
-                    "b = 20",
-                    "print(result)"
-                ],
-                answer: [
-                    "a = 10",
-                    "b = 20",
-                    "result = a + b",
-                    "print(result)"
-                ],
-                hint: "Create the numbers before adding them.",
-                explanation:
-                    "Python executes code from top to bottom, so a and b must exist before calculating result."
-            },
-
-            {
-                id: 4,
-                title: "Make a Decision",
-                description:
-                    "Arrange the code to check a number.",
-                code: [
-                    'print("Positive")',
-                    "number = 10",
-                    "if number > 0:"
-                ],
-                answer: [
-                    "number = 10",
-                    "if number > 0:",
-                    'print("Positive")'
-                ],
-                hint: "First create the number, then check it.",
-                explanation:
-                    "The number is created first, then the if statement checks whether it is greater than zero."
-            },
-
-            {
-                id: 5,
-                title: "Python Loop",
-                description:
-                    "Arrange the code to print numbers from 1 to 3.",
-                code: [
-                    "    print(i)",
-                    "for i in range(1, 4):"
-                ],
-                answer: [
-                    "for i in range(1, 4):",
-                    "    print(i)"
-                ],
-                hint: "The loop statement comes before the code inside it.",
-                explanation:
-                    "The for statement starts the loop and the indented print statement runs during each iteration."
-            },
-
-            {
-                id: 6,
-                title: "Create a Function",
-                description:
-                    "Arrange the code to create and call a function.",
-                code: [
-                    "greet()",
-                    "def greet():",
-                    '    print("Hello!")'
-                ],
-                answer: [
-                    "def greet():",
-                    '    print("Hello!")',
-                    "greet()"
-                ],
-                hint: "Define the function before calling it.",
-                explanation:
-                    "Python needs the function definition before the function is called."
-            },
-
-            {
-                id: 7,
-                title: "List Example",
-                description:
-                    "Create a list and print it.",
-                code: [
-                    "print(fruits)",
-                    'fruits = ["Apple", "Banana", "Mango"]'
-                ],
-                answer: [
-                    'fruits = ["Apple", "Banana", "Mango"]',
-                    "print(fruits)"
-                ],
-                hint: "Create the list before printing it.",
-                explanation:
-                    "The fruits variable must be assigned before Python can print it."
-            },
-
-            {
-                id: 8,
-                title: "Even or Odd",
-                description:
-                    "Arrange the code to check whether a number is even.",
-                code: [
-                    'print("Even")',
-                    "if number % 2 == 0:",
-                    "number = 8"
-                ],
-                answer: [
-                    "number = 8",
-                    "if number % 2 == 0:",
-                    'print("Even")'
-                ],
-                hint: "The number must exist before the condition checks it.",
-                explanation:
-                    "We first assign the number, then check its remainder using the % operator."
-            }
-        ];
+        this.puzzles = puzzleData;
 
         this.state = {
             currentPuzzle: 0,
@@ -204,9 +51,10 @@ class CodePuzzle extends Component {
     loadPuzzle = (index) => {
         const puzzle = this.puzzles[index];
 
-        const shuffledCode = this.shuffleArray([
-            ...puzzle.code
-        ]);
+        const shuffledCode = this.shuffleArray(
+            [...puzzle.code],
+            puzzle
+        );
 
         this.setState({
             currentPuzzle: index,
@@ -227,7 +75,7 @@ class CodePuzzle extends Component {
     // SHUFFLE
     // =====================================================
 
-    shuffleArray = (array) => {
+    shuffleArray = (array, puzzle) => {
         const shuffled = [...array];
 
         for (
@@ -249,16 +97,12 @@ class CodePuzzle extends Component {
         }
 
         // Make sure the puzzle isn't already solved
-
-        const currentPuzzle =
-            this.puzzles[this.state?.currentPuzzle || 0];
-
         if (
-            currentPuzzle &&
+            puzzle &&
             shuffled.join("|") ===
-                currentPuzzle.answer.join("|")
+                puzzle.answer.join("|")
         ) {
-            return this.shuffleArray(array);
+            return this.shuffleArray(array, puzzle);
         }
 
         return shuffled;
@@ -381,8 +225,7 @@ class CodePuzzle extends Component {
     checkAnswer = () => {
         const {
             currentPuzzle,
-            currentCode,
-            attempts
+            currentCode
         } = this.state;
 
         const puzzle =

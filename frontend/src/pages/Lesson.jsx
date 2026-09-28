@@ -3,6 +3,17 @@ import { Link, useParams } from "react-router-dom";
 
 import lessonData from "../data/lessonData";
 
+import {
+    runPython,
+    getPythonStatus,
+    onPythonStatusChange
+} from "../utils/pythonRunner";
+
+import {
+    isTopicCompleted,
+    markTopicCompleted
+} from "../utils/progress";
+
 import "./Lesson.css";
 
 
@@ -13,9 +24,73 @@ class Lesson extends Component {
 
         this.state = {
             currentLesson: 0,
-            completed: false
+            completed: false,
+            alreadyCompleted: isTopicCompleted(props.slug),
+            xpEarned: 0,
+            running: false,
+            runResult: null,
+            pythonStatus: getPythonStatus()
         };
     }
+
+
+    componentDidMount() {
+
+        this.mounted = true;
+
+        this.unsubscribe = onPythonStatusChange(status => {
+            if (this.mounted) {
+                this.setState({ pythonStatus: status });
+            }
+        });
+    }
+
+
+    componentWillUnmount() {
+
+        this.mounted = false;
+
+        if (this.unsubscribe) {
+            this.unsubscribe();
+        }
+    }
+
+
+    canRunExample(code) {
+
+        return Boolean(code) &&
+            !/import\s+turtle|from\s+turtle\s+import/.test(code) &&
+            !/\binput\s*\(/.test(code);
+    }
+
+
+    runExample = async () => {
+
+        const topic = this.getTopic();
+
+        if (!topic || this.state.running) {
+            return;
+        }
+
+        const lessonIndex = this.state.currentLesson;
+        const lesson = topic.lessons[lessonIndex];
+
+        this.setState({ running: true, runResult: null });
+
+        const result = await runPython(lesson.example);
+
+        if (!this.mounted) {
+            return;
+        }
+
+        if (this.state.currentLesson !== lessonIndex ||
+            this.getTopic() !== topic) {
+            this.setState({ running: false });
+            return;
+        }
+
+        this.setState({ running: false, runResult: result });
+    };
 
 
     getTopic() {
@@ -46,13 +121,24 @@ class Lesson extends Component {
 
             this.setState({
                 currentLesson:
-                    this.state.currentLesson + 1
+                    this.state.currentLesson + 1,
+
+                runResult: null
             });
 
         } else {
 
+            const totalPoints = topic.lessons.reduce(
+                (sum, l) => sum + (Number(l.points) || 0),
+                0
+            );
+
+            const firstTime = markTopicCompleted(topic.slug, totalPoints);
+
             this.setState({
-                completed: true
+                completed: true,
+                alreadyCompleted: true,
+                xpEarned: firstTime ? totalPoints : 0
             });
 
         }
@@ -68,7 +154,9 @@ class Lesson extends Component {
                 currentLesson:
                     this.state.currentLesson - 1,
 
-                completed: false
+                completed: false,
+
+                runResult: null
             });
 
         }
@@ -117,6 +205,10 @@ class Lesson extends Component {
             topic.lessons[this.state.currentLesson];
 
 
+        const firstExercise =
+            (topic.exercises || [])[0] || null;
+
+
         const progress =
             (
                 (this.state.currentLesson + 1)
@@ -157,6 +249,12 @@ class Lesson extends Component {
 
                             <h1>
                                 {topic.title}
+
+                                {this.state.alreadyCompleted && (
+                                    <span className="lesson-completed-badge">
+                                        ✅ Completed
+                                    </span>
+                                )}
                             </h1>
 
                         </div>
@@ -225,7 +323,19 @@ class Lesson extends Component {
 
                             <div className="code-header">
 
-                                🐍 Python
+                                <span>🐍 Python</span>
+
+                                {this.canRunExample(lesson.example) && (
+
+                                    <button
+                                        className="try-it-button"
+                                        onClick={this.runExample}
+                                        disabled={this.state.running}
+                                    >
+                                        {this.state.running ? "Running..." : "▶ Try it"}
+                                    </button>
+
+                                )}
 
                             </div>
 
@@ -246,12 +356,45 @@ class Lesson extends Component {
 
                             <div>
                                 ▶ Output
+                                {this.state.runResult && !this.state.running && (
+                                    <span className="output-live"> • ran for real! 🐍</span>
+                                )}
                             </div>
 
 
-                            <pre>
-                                {lesson.output}
-                            </pre>
+                            {this.state.running ? (
+
+                                <pre className="output-status">
+                                    {this.state.pythonStatus === "loading"
+                                        ? "Warming up Python... 🐍"
+                                        : "Running..."}
+                                </pre>
+
+                            ) : this.state.runResult ? (
+
+                                <>
+                                    {(this.state.runResult.stdout ||
+                                        !this.state.runResult.error) && (
+                                        <pre>
+                                            {this.state.runResult.stdout ||
+                                                "(nothing was printed)"}
+                                        </pre>
+                                    )}
+
+                                    {this.state.runResult.error && (
+                                        <pre className="output-error">
+                                            🐛 {this.state.runResult.error}
+                                        </pre>
+                                    )}
+                                </>
+
+                            ) : (
+
+                                <pre>
+                                    {lesson.output}
+                                </pre>
+
+                            )}
 
                         </div>
 
@@ -279,6 +422,24 @@ class Lesson extends Component {
 
                                 You completed all lessons
                                 in this topic!
+
+                                {this.state.xpEarned > 0 && (
+                                    <>
+                                        <br />
+                                        ⭐ +{this.state.xpEarned} XP
+                                    </>
+                                )}
+
+                                {firstExercise && (
+                                    <div className="lesson-complete-links">
+                                        <Link
+                                            to={`/exercise/${firstExercise.id}`}
+                                            className="lesson-button secondary"
+                                        >
+                                            🧩 Practice exercises
+                                        </Link>
+                                    </div>
+                                )}
 
                             </div>
 
@@ -319,7 +480,11 @@ class Lesson extends Component {
                             ) : (
 
                                 <Link
-                                    to="/quizzes"
+                                    to={
+                                        topic.quiz && topic.quiz.length
+                                            ? `/quiz/${topic.slug}`
+                                            : "/quizzes"
+                                    }
                                     className="lesson-button primary"
                                 >
                                     Take Quiz 🧠
@@ -328,6 +493,21 @@ class Lesson extends Component {
                             )}
 
                         </div>
+
+
+                        {firstExercise && !this.state.completed && (
+
+                            <div className="lesson-practice">
+
+                                🧩 Want to practice?{" "}
+
+                                <Link to={`/exercise/${firstExercise.id}`}>
+                                    Try the {topic.title} exercises →
+                                </Link>
+
+                            </div>
+
+                        )}
 
 
                     </div>
@@ -355,6 +535,7 @@ function LessonWithParams(props) {
     return (
         <Lesson
             {...props}
+            key={params.slug}
             slug={params.slug}
         />
     );

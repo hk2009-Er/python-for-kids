@@ -1,39 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/</loc>
   </url>
-
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/learn</loc>
   </url>
-
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/exercises</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/projects</loc>
+  </url>
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/quizzes</loc>
   </url>
-
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/games</loc>
   </url>
-
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/game/python-snake</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/game/code-puzzle</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/game/python-catch</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/game/space-python</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/game/code-runner</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/python-basics</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/python-basics</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/variables</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/variables</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/data-types</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/data-types</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/operators</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/operators</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/strings</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/strings</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/user-input</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/user-input</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/if-else</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/if-else</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/loops</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/loops</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/loop-control</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/loop-control</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/lists</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/lists</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/tuples-sets</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/tuples-sets</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/dictionaries</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/dictionaries</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/functions</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/functions</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/random-modules</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/random-modules</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/error-handling</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/error-handling</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/turtle-graphics</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/turtle-graphics</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/lesson/classes-objects</loc>
+  </url>
+  <url>
+    <loc>https://python-tutorial-for-kids.pages.dev/quiz/classes-objects</loc>
+  </url>
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/about</loc>
   </url>
-
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/contact</loc>
   </url>
-
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/privacy</loc>
   </url>
-
   <url>
     <loc>https://python-tutorial-for-kids.pages.dev/terms</loc>
   </url>
-
 </urlset>

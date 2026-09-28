@@ -2,6 +2,7 @@ import React, { Component } from "react";
     import { Link, useParams } from "react-router-dom";
 
     import lessonData from "../data/lessonData";
+    import { saveQuizScore } from "../utils/progress";
 
     import "./Quiz.css";
 
@@ -91,6 +92,12 @@ import React, { Component } from "react";
                 });
 
             } else {
+
+                saveQuizScore(
+                    topic.slug,
+                    this.state.score,
+                    topic.quiz.length
+                );
 
                 this.setState({
                     finished: true

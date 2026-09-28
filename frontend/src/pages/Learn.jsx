@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import lessonData from "../data/lessonData";
+import { getCompletedTopics } from "../utils/progress";
 
 import "./Learn.css";
 
@@ -11,7 +12,8 @@ class Learn extends Component {
         super(props);
 
         this.state = {
-            selectedLevel: "All"
+            selectedLevel: "All",
+            completedTopics: getCompletedTopics()
         };
     }
 
@@ -33,7 +35,8 @@ class Learn extends Component {
         const levels = [
             "All",
             "Beginner",
-            "Intermediate"
+            "Intermediate",
+            "Advanced"
         ];
 
 
@@ -110,9 +113,19 @@ class Learn extends Component {
                         {filteredTopics.map(topic => (
 
                             <div
-                                className="topic-card"
+                                className={
+                                    this.state.completedTopics.includes(topic.slug)
+                                        ? "topic-card completed"
+                                        : "topic-card"
+                                }
                                 key={topic.id}
                             >
+
+                                {this.state.completedTopics.includes(topic.slug) && (
+                                    <span className="topic-completed">
+                                        ✅ Completed
+                                    </span>
+                                )}
 
                                 <div className="topic-icon">
                                     {topic.icon}
@@ -145,7 +158,9 @@ class Learn extends Component {
                                         to={`/lesson/${topic.slug}`}
                                         className="learn-topic-button"
                                     >
-                                        Start Learning →
+                                        {this.state.completedTopics.includes(topic.slug)
+                                            ? "Review →"
+                                            : "Start Learning →"}
                                     </Link>
 
                                 </div>

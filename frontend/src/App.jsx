@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import {
     BrowserRouter,
     Routes,
@@ -8,20 +9,23 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
-import Learn from "./pages/Learn";
-import Lesson from "./pages/Lesson";
-import Exercises from "./pages/Exercises";
-import Projects from "./pages/Projects";
-import Quizzes from "./pages/Quizzes"; 
-import Games from "./pages/Games";
-import Game from "./pages/Game";
-import Quiz from "./pages/Quiz";
 import "./App.css";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
+
+// Pages load on demand so the first visit stays fast.
+const Learn = lazy(() => import("./pages/Learn"));
+const Lesson = lazy(() => import("./pages/Lesson"));
+const Exercises = lazy(() => import("./pages/Exercises"));
+const Exercise = lazy(() => import("./pages/Exercise"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Quizzes = lazy(() => import("./pages/Quizzes"));
+const Games = lazy(() => import("./pages/Games"));
+const Game = lazy(() => import("./pages/Game"));
+const Quiz = lazy(() => import("./pages/Quiz"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
 
@@ -36,6 +40,13 @@ function App() {
                 {/* Main Website Content */}
                 <main className="main-content">
 
+                    <Suspense
+                        fallback={
+                            <div className="page-loading">
+                                🐍 Loading...
+                            </div>
+                        }
+                    >
                     <Routes>
 
                         {/* Home */}
@@ -60,6 +71,11 @@ function App() {
                         <Route
                             path="/exercises"
                             element={<Exercises />}
+                        />
+
+                        <Route
+                            path="/exercise/:exerciseId"
+                            element={<Exercise />}
                         />
 
                         {/* Projects */}
@@ -89,40 +105,16 @@ function App() {
                             element={<About />}
                         />
 
+                        <Route path="/contact" element={<Contact />} />
+
+                        <Route path="/privacy" element={<PrivacyPolicy />} />
+
+                        <Route path="/terms" element={<Terms />} />
+
                         {/* 404 */}
-                        <Route
-                            path="*"
-                            element={
-                                <div className="not-found">
-
-                                    <h1>🐍 Oops!</h1>
-
-                                    <h2>
-                                        Python couldn't find this page!
-                                    </h2>
-
-                                    <p>
-                                        The page you're looking for
-                                        doesn't exist.
-                                    </p>
-
-                                    <a href="/">
-                                        🏠 Go Home
-                                    </a>
-
-                                </div>
-                            }
-                        />
-                    <Route path="/about" element={<About />} />
-
-                    <Route path="/contact" element={<Contact />} />
-
-                    <Route path="/privacy" element={<PrivacyPolicy />} />
-
-                    <Route path="/terms" element={<Terms />} />
-
-                    <Route path="*" element={<NotFound />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
+                    </Suspense>
 
                 </main>
 

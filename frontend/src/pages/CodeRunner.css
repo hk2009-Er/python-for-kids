@@ -1,0 +1,1097 @@
+/* =========================================================
+   CODE RUNNER GAME
+   ========================================================= */
+
+.runner-page,
+.runner-page * {
+    box-sizing: border-box;
+}
+
+.runner-page {
+    min-height: 100vh;
+    width: 100%;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(124, 255, 178, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(120, 150, 255, 0.12), transparent 25%),
+        linear-gradient(135deg, #07111f 0%, #0b1728 50%, #07101d 100%);
+    color: #ffffff;
+    padding-bottom: 50px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.runner-page code,
+.runner-page pre {
+    font-family: "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.runner-header {
+    width: 100%;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 35px;
+    background: rgba(7, 18, 32, 0.88);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.runner-header-left {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.runner-back {
+    color: #9de8ba;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 14px;
+    border: 1px solid rgba(157, 232, 186, 0.25);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.runner-back:hover {
+    color: #ffffff;
+    background: rgba(157, 232, 186, 0.1);
+    transform: translateX(-3px);
+}
+
+.runner-header h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, #9de8ba);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.runner-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.runner-stat {
+    padding: 9px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.runner-hearts {
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.runner-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.runner-instruction {
+    margin: 0;
+    color: #9eacbd;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
+.runner-track {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #102d22, #071c16);
+    border: 2px solid rgba(111, 255, 169, 0.28);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(72, 255, 151, 0.08);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.runner-lane {
+    height: 33.333%;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.08);
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.035) 0 32px,
+        transparent 32px 64px
+    );
+    transition: background-color 0.2s ease;
+}
+
+.runner-lane:last-of-type {
+    border-bottom: none;
+}
+
+.runner-lane.current {
+    background-color: rgba(90, 255, 158, 0.05);
+}
+
+
+/* Coins and rocks: a zero-width anchor at x, content centred on it */
+
+.runner-thing {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 33.333%;
+    display: flex;
+    align-items: center;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.runner-thing span {
+    display: block;
+    transform: translateX(-50%);
+    line-height: 1;
+}
+
+.runner-coin span {
+    font-size: 26px;
+    animation: runnerCoinSpin 0.9s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 6px rgba(255, 210, 80, 0.5));
+}
+
+.runner-rock span {
+    font-size: 34px;
+    filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.45));
+}
+
+.runner-rock.hit span {
+    opacity: 0.45;
+}
+
+
+/* Gates: a column across all lanes with an answer pill in each */
+
+.runner-gate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.runner-gate::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -2px;
+    width: 4px;
+    background: linear-gradient(180deg, #8dffb7, #7896ff);
+    opacity: 0.55;
+    border-radius: 4px;
+}
+
+.runner-gate-cell {
+    height: 33.333%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.runner-gate-pill {
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+    min-width: 54px;
+    max-width: 170px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-family: "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #ffffff;
+    background: rgba(19, 35, 55, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.runner-gate-pill.lane-0,
+.runner-option.lane-0 .runner-option-lane {
+    border-color: rgba(255, 196, 87, 0.7);
+}
+
+.runner-gate-pill.lane-1,
+.runner-option.lane-1 .runner-option-lane {
+    border-color: rgba(120, 150, 255, 0.75);
+}
+
+.runner-gate-pill.lane-2,
+.runner-option.lane-2 .runner-option-lane {
+    border-color: rgba(255, 120, 200, 0.7);
+}
+
+.runner-gate-pill.correct {
+    background: #2bc86e;
+    border-color: #a8ffc7;
+    color: #071a10;
+}
+
+.runner-gate-pill.wrong {
+    background: #e94d61;
+    border-color: #ffadb6;
+}
+
+.runner-gate-pill.faded {
+    opacity: 0.35;
+}
+
+
+/* Player */
+
+.runner-player {
+    position: absolute;
+    width: 0;
+    height: 33.333%;
+    z-index: 5;
+    transition: top 0.14s ease-out;
+    pointer-events: none;
+}
+
+.runner-body {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -22px;
+    line-height: 1;
+    font-size: 40px;
+    will-change: transform;
+}
+
+.runner-body span {
+    display: block;
+    transform: scaleX(-1);
+}
+
+.runner-shadow {
+    position: absolute;
+    left: 0;
+    bottom: 12%;
+    width: 36px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.runner-player.boost .runner-body span {
+    filter: drop-shadow(-10px 0 6px rgba(141, 255, 183, 0.7));
+}
+
+.runner-player.stumble .runner-body span {
+    animation: runnerShake 0.2s linear infinite;
+    opacity: 0.8;
+}
+
+
+/* Toast + pause */
+
+.runner-toast {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100% - 20px);
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: rgba(255, 75, 95, 0.9);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    z-index: 8;
+    pointer-events: none;
+    animation: runnerToastIn 0.2s ease;
+}
+
+.runner-pause {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 9, 17, 0.72);
+    backdrop-filter: blur(6px);
+    cursor: default;
+}
+
+.runner-pause-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.runner-pause-icon {
+    font-size: 40px;
+}
+
+.runner-pause-card strong {
+    font-size: 22px;
+}
+
+.runner-pause-card button {
+    min-height: 46px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.runner-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.runner-controls button {
+    min-width: 56px;
+    height: 52px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.runner-controls .runner-jump-btn {
+    flex: 0 1 160px;
+    font-size: 17px;
+    background: rgba(85, 255, 158, 0.12);
+    border-color: rgba(85, 255, 158, 0.3);
+}
+
+.runner-controls button:hover {
+    background: rgba(85, 255, 158, 0.14);
+}
+
+.runner-controls button:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   CHALLENGE PANEL
+   ========================================================= */
+
+.runner-panel {
+    background: linear-gradient(145deg, rgba(19, 35, 55, 0.96), rgba(11, 24, 40, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 22px;
+    padding: 22px 26px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    min-width: 0;
+    animation: runnerFeedbackIn 0.25s ease;
+}
+
+.runner-panel-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.runner-topic {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 10px;
+    background: rgba(90, 255, 158, 0.1);
+    border: 1px solid rgba(90, 255, 158, 0.18);
+    color: #8dffb7;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+.runner-countdown {
+    color: #ffd98a;
+    font-size: 14px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.runner-question {
+    margin: 12px 0 8px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.runner-code {
+    margin: 0 0 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #050c16;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #c8f7d8;
+    font-size: 16px;
+    line-height: 1.55;
+    white-space: pre;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+.runner-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.runner-option {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.045);
+    color: #e9f0f7;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.runner-option code {
+    font-size: 15px;
+    font-weight: 700;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.runner-option-lane {
+    flex-shrink: 0;
+    width: 104px;
+    padding: 5px 8px;
+    border-radius: 9px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.06);
+    color: #a8b7c8;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.runner-option.active {
+    background: rgba(92, 255, 160, 0.1);
+    border-color: rgba(92, 255, 160, 0.5);
+}
+
+.runner-option.active .runner-option-lane {
+    color: #ffffff;
+}
+
+.runner-idle strong,
+.runner-feedback strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.runner-idle p,
+.runner-feedback p {
+    margin: 4px 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #a5b4c5;
+}
+
+.runner-feedback.good {
+    border-color: rgba(55, 214, 118, 0.35);
+}
+
+.runner-feedback.good strong {
+    color: #9fffbf;
+}
+
+.runner-feedback.bad {
+    border-color: rgba(255, 75, 95, 0.4);
+}
+
+.runner-feedback.bad strong {
+    color: #ffb0b8;
+}
+
+.runner-feedback p code,
+.runner-mistake p code {
+    padding: 2px 8px;
+    border-radius: 7px;
+    background: #050c16;
+    color: #8dffb7;
+    font-weight: 700;
+    white-space: pre;
+}
+
+.runner-explain {
+    color: #dce5ee !important;
+}
+
+
+/* =========================================================
+   START OVERLAY
+   ========================================================= */
+
+.runner-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(3, 9, 17, 0.82);
+    backdrop-filter: blur(12px);
+    overflow-y: auto;
+}
+
+.runner-start-card {
+    width: min(500px, 100%);
+    margin: auto;
+    padding: 36px 32px;
+    text-align: center;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #13243a, #0b1728);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.runner-big-icon {
+    font-size: 70px;
+    margin-bottom: 10px;
+    animation: runnerFloat 2s ease-in-out infinite;
+}
+
+.runner-big-icon,
+.runner-result-icon {
+    display: inline-block;
+}
+
+.runner-start-card h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    background: linear-gradient(90deg, #ffffff, #8dffb7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.runner-start-card > p {
+    color: #a5b4c5;
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    max-width: 380px;
+}
+
+.runner-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0 24px;
+}
+
+.runner-rules div {
+    padding: 12px 8px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #dce5ee;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.runner-start-btn {
+    width: 100%;
+    min-height: 55px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(45, 225, 119, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.runner-start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(45, 225, 119, 0.3);
+}
+
+.runner-start-card .runner-keyboard-help {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: #718195;
+}
+
+
+/* =========================================================
+   RESULT SCREEN
+   ========================================================= */
+
+.runner-result {
+    width: min(700px, calc(100% - 40px));
+    margin: 60px auto;
+    padding: 45px 40px;
+    text-align: center;
+    background: linear-gradient(145deg, #13243a, #0b1728);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+.runner-result-icon {
+    font-size: 75px;
+    animation: runnerFloat 1.5s ease-in-out infinite;
+}
+
+.runner-result h1 {
+    font-size: 34px;
+    margin: 15px 0 8px;
+    background: linear-gradient(90deg, #ffffff, #8dffb7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.runner-result > p {
+    color: #9cabbc;
+    margin: 0 0 26px;
+}
+
+.runner-result-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.runner-result-stat {
+    padding: 18px 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.runner-result-stat span {
+    font-size: 25px;
+}
+
+.runner-result-stat strong {
+    font-size: 21px;
+    color: #ffffff;
+}
+
+.runner-result-stat small {
+    color: #8493a5;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.runner-progress {
+    height: 12px;
+    width: 100%;
+    border-radius: 100px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 12px;
+}
+
+.runner-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #32d979, #8dffb7);
+    box-shadow: 0 0 15px rgba(70, 255, 145, 0.3);
+    transition: width 1s ease;
+}
+
+.runner-result .runner-result-line {
+    margin: 6px 0;
+    color: #c4d0dc;
+}
+
+.runner-mistake {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 16px;
+    text-align: left;
+    background: rgba(255, 75, 95, 0.07);
+    border: 1px solid rgba(255, 75, 95, 0.22);
+}
+
+.runner-mistake strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffb0b8;
+}
+
+.runner-mistake p {
+    margin: 6px 0 0;
+    color: #a5b4c5;
+    line-height: 1.6;
+}
+
+.runner-mistake .runner-code {
+    margin-bottom: 8px;
+}
+
+.runner-result-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.runner-result-buttons button,
+.runner-result-buttons a {
+    min-height: 46px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.runner-result-buttons button {
+    border: none;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+}
+
+.runner-result-buttons a {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #dce5ee;
+}
+
+.runner-result-buttons button:hover,
+.runner-result-buttons a:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes runnerCoinSpin {
+    from { transform: translateX(-50%) scale(0.85); }
+    to { transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes runnerShake {
+    0%, 100% { transform: scaleX(-1) translateX(0); }
+    25% { transform: scaleX(-1) translateX(-3px) rotate(-8deg); }
+    75% { transform: scaleX(-1) translateX(3px) rotate(8deg); }
+}
+
+@keyframes runnerFeedbackIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes runnerToastIn {
+    from { opacity: 0; transform: translate(-50%, -6px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes runnerFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .runner-big-icon,
+    .runner-result-icon,
+    .runner-coin span,
+    .runner-panel {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .runner-header {
+        padding: 12px 15px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .runner-header-left {
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .runner-header h1 {
+        font-size: 19px;
+    }
+
+    .runner-back {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+
+    .runner-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    .runner-stat {
+        padding: 7px 4px;
+        text-align: center;
+        font-size: 11px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .runner-hearts {
+        letter-spacing: 0;
+    }
+
+    .runner-content {
+        padding: 14px 12px;
+        gap: 12px;
+    }
+
+    .runner-track {
+        height: 210px;
+        border-radius: 14px;
+    }
+
+    .runner-coin span {
+        font-size: 20px;
+    }
+
+    .runner-rock span {
+        font-size: 26px;
+    }
+
+    .runner-body {
+        font-size: 30px;
+        margin-top: -16px;
+    }
+
+    .runner-shadow {
+        width: 26px;
+        height: 7px;
+    }
+
+    .runner-gate-pill {
+        font-size: 12px;
+        padding: 5px 7px;
+        min-width: 40px;
+        max-width: 128px;
+        border-radius: 9px;
+    }
+
+    .runner-controls {
+        gap: 8px;
+    }
+
+    .runner-controls button {
+        min-width: 0;
+        flex: 1 1 0;
+        height: 50px;
+        padding: 0 6px;
+        font-size: 18px;
+    }
+
+    .runner-controls .runner-jump-btn {
+        flex: 2 1 0;
+        font-size: 15px;
+    }
+
+    .runner-instruction {
+        display: none;
+    }
+
+    .runner-panel {
+        padding: 16px 14px;
+        border-radius: 18px;
+    }
+
+    .runner-question {
+        font-size: 16px;
+        margin: 10px 0 6px;
+    }
+
+    .runner-code {
+        font-size: 13.5px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .runner-option {
+        min-height: 42px;
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .runner-option code {
+        font-size: 13px;
+    }
+
+    .runner-option-lane {
+        width: 86px;
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+
+    .runner-idle p,
+    .runner-feedback p {
+        font-size: 14px;
+    }
+
+    .runner-start-card {
+        padding: 28px 18px;
+    }
+
+    .runner-big-icon {
+        font-size: 55px;
+    }
+
+    .runner-start-card h1 {
+        font-size: 27px;
+    }
+
+    .runner-rules div {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .runner-result {
+        width: calc(100% - 24px);
+        margin: 24px auto;
+        padding: 30px 16px;
+    }
+
+    .runner-result-icon {
+        font-size: 60px;
+    }
+
+    .runner-result h1 {
+        font-size: 27px;
+    }
+
+    .runner-result-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .runner-result-buttons {
+        flex-direction: column;
+    }
+
+    .runner-result-buttons button,
+    .runner-result-buttons a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .runner-header h1 {
+        font-size: 17px;
+    }
+
+    .runner-stat {
+        font-size: 10px;
+    }
+
+    .runner-track {
+        height: 195px;
+    }
+
+    .runner-gate-pill {
+        font-size: 11px;
+        max-width: 112px;
+    }
+
+    .runner-option-lane {
+        width: 74px;
+    }
+}

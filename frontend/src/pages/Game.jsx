@@ -5,6 +5,9 @@ import lessonData from "../data/lessonData";
 import "./Game.css";
 import SnakeGame from "./SnakeGame";
 import CodePuzzle from "./CodePuzzle";
+import PythonCatch from "./PythonCatch";
+import SpacePython from "./SpacePython";
+import CodeRunner from "./CodeRunner";
 
 class Game extends Component {
 
@@ -597,6 +600,15 @@ class Game extends Component {
         }
     if (this.props.gameId === "code-puzzle") {
             return <CodePuzzle />;
+        }
+        if (this.props.gameId === "python-catch") {
+            return <PythonCatch />;
+        }
+        if (this.props.gameId === "space-python") {
+            return <SpacePython />;
+        }
+        if (this.props.gameId === "code-runner") {
+            return <CodeRunner />;
         }
         const game = this.getGameInfo();
 

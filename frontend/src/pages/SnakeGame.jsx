@@ -923,7 +923,6 @@ class SnakeGame extends Component {
             questions,
             currentQuestion,
             snake,
-            food,
             score,
             xp,
             lives,

@@ -1,0 +1,869 @@
+/* =========================================================
+   PYTHON CATCH GAME
+   ========================================================= */
+
+.catch-page {
+    min-height: 100vh;
+    width: 100%;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(124, 255, 178, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(120, 150, 255, 0.12), transparent 25%),
+        linear-gradient(135deg, #07111f 0%, #0b1728 50%, #07101d 100%);
+    color: #ffffff;
+    padding-bottom: 40px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.catch-page *,
+.catch-page *::before,
+.catch-page *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.catch-header {
+    width: 100%;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 35px;
+    background: rgba(7, 18, 32, 0.88);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.catch-header-left {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.catch-back {
+    color: #9de8ba;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 14px;
+    border: 1px solid rgba(157, 232, 186, 0.25);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.catch-back:hover {
+    color: #ffffff;
+    background: rgba(157, 232, 186, 0.1);
+    transform: translateX(-3px);
+}
+
+.catch-header h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, #9de8ba);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.catch-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.catch-stat {
+    padding: 9px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.catch-center {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.catch-content {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 22px 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* =========================================================
+   QUESTION CARD
+   ========================================================= */
+
+.catch-question {
+    background: linear-gradient(145deg, rgba(19, 35, 55, 0.96), rgba(11, 24, 40, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    padding: 16px 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.catch-question-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.catch-topic-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border-radius: 10px;
+    background: rgba(90, 255, 158, 0.1);
+    border: 1px solid rgba(90, 255, 158, 0.18);
+    color: #8dffb7;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.catch-qnum {
+    color: #8292a7;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.catch-question h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #ffffff;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   PLAY AREA
+   ========================================================= */
+
+.catch-arena {
+    position: relative;
+    width: 100%;
+    height: clamp(360px, 56vh, 540px);
+    overflow: hidden;
+    border-radius: 20px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent calc(25% - 1px),
+            rgba(255, 255, 255, 0.035) calc(25% - 1px),
+            rgba(255, 255, 255, 0.035) 25%
+        ),
+        linear-gradient(180deg, #0d2238 0%, #0b1c2e 60%, #102d22 100%);
+    border: 2px solid rgba(111, 255, 169, 0.28);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(72, 255, 151, 0.08);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+}
+
+.catch-arena:active {
+    cursor: grabbing;
+}
+
+/* =========================================================
+   FALLING ANSWERS
+   ========================================================= */
+
+.catch-item {
+    position: absolute;
+    top: 0;
+    padding: 10px 8px;
+    border-radius: 14px;
+    font-family: "Fira Code", "Consolas", "Courier New", monospace;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    color: #ffffff;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    will-change: transform;
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.25s ease, filter 0.25s ease;
+    pointer-events: none;
+}
+
+.lane-color-0 {
+    background: linear-gradient(135deg, #3b6fd8, #2a4fa8);
+    border: 1px solid rgba(140, 180, 255, 0.55);
+}
+
+.lane-color-1 {
+    background: linear-gradient(135deg, #8a4fd6, #6433a8);
+    border: 1px solid rgba(200, 160, 255, 0.55);
+}
+
+.lane-color-2 {
+    background: linear-gradient(135deg, #d6814f, #a85a2e);
+    border: 1px solid rgba(255, 200, 150, 0.55);
+}
+
+.lane-color-3 {
+    background: linear-gradient(135deg, #c94f86, #9a3363);
+    border: 1px solid rgba(255, 160, 200, 0.55);
+}
+
+.catch-arena.is-feedback .catch-item {
+    opacity: 0.3;
+    filter: grayscale(0.6);
+}
+
+.catch-arena.is-feedback .catch-item.reveal {
+    opacity: 1;
+    filter: none;
+    background: linear-gradient(135deg, #35d978, #16a85b);
+    border-color: rgba(160, 255, 200, 0.9);
+    color: #06150d;
+    box-shadow: 0 0 22px rgba(55, 214, 118, 0.55);
+}
+
+.catch-item.caught {
+    animation: catchPop 0.45s ease forwards;
+}
+
+.catch-item.caught.wrong {
+    opacity: 1;
+    filter: none;
+    background: linear-gradient(135deg, #e94d61, #b02a3c);
+    border-color: rgba(255, 160, 170, 0.9);
+}
+
+/* =========================================================
+   BASKET
+   ========================================================= */
+
+.catch-basket {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    min-width: 64px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 8px 22px 22px;
+    background: linear-gradient(180deg, #73ffad, #20bd67);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 0 18px rgba(86, 255, 159, 0.45),
+        inset 0 2px 3px rgba(255, 255, 255, 0.5);
+    will-change: transform;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.catch-basket span {
+    font-size: 26px;
+    line-height: 1;
+}
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.catch-toast {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100% - 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 12px 22px;
+    border-radius: 14px;
+    text-align: center;
+    z-index: 5;
+    animation: feedbackIn 0.25s ease;
+}
+
+.catch-toast.correct {
+    background: rgba(12, 40, 26, 0.95);
+    border: 1px solid rgba(55, 214, 118, 0.5);
+    color: #9fffbf;
+}
+
+.catch-toast strong {
+    font-size: 18px;
+}
+
+.catch-toast span {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.catch-feedback-card {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    max-height: calc(100% - 80px);
+    overflow-y: auto;
+    padding: 16px;
+    border-radius: 14px;
+    background: rgba(40, 12, 20, 0.96);
+    border: 1px solid rgba(255, 75, 95, 0.45);
+    color: #ffb0b8;
+    z-index: 5;
+    animation: feedbackIn 0.25s ease;
+}
+
+.catch-feedback-card strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.catch-feedback-answer {
+    color: #dce5ee;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+.catch-feedback-answer code {
+    font-family: "Fira Code", "Consolas", "Courier New", monospace;
+    background: rgba(55, 214, 118, 0.15);
+    color: #a8ffc7;
+    padding: 2px 6px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+}
+
+.catch-feedback-card p {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.catch-feedback-card button,
+.catch-paused button {
+    min-height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.catch-paused {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 9, 17, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.catch-paused > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.catch-paused strong {
+    font-size: 26px;
+}
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.catch-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.catch-move-btn {
+    width: 76px;
+    height: 58px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #9de8ba;
+    font-size: 24px;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.catch-move-btn:hover {
+    background: rgba(85, 255, 158, 0.12);
+}
+
+.catch-move-btn:active {
+    transform: scale(0.92);
+    background: rgba(85, 255, 158, 0.2);
+}
+
+.catch-pause-btn {
+    min-width: 120px;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid rgba(157, 232, 186, 0.25);
+    border-radius: 12px;
+    background: rgba(157, 232, 186, 0.08);
+    color: #dce5ee;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.catch-pause-btn:hover {
+    background: rgba(157, 232, 186, 0.16);
+}
+
+.catch-help {
+    margin: 4px 0 0;
+    color: #718195;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* =========================================================
+   START CARD
+   ========================================================= */
+
+.catch-start-card,
+.catch-result {
+    width: min(520px, 100%);
+    padding: 36px 32px;
+    text-align: center;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #13243a, #0b1728);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.catch-big-icon,
+.catch-result-icon {
+    font-size: 66px;
+    margin-bottom: 8px;
+    animation: catchFloat 2s ease-in-out infinite;
+}
+
+.catch-start-card h1,
+.catch-result h1 {
+    margin: 0 0 12px;
+    font-size: 30px;
+    background: linear-gradient(90deg, #ffffff, #8dffb7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.catch-start-card > p,
+.catch-result > p {
+    color: #a5b4c5;
+    line-height: 1.6;
+    margin: 0 auto 18px;
+    max-width: 400px;
+}
+
+.catch-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.catch-rules div {
+    padding: 11px 8px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #dce5ee;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.catch-topic-label {
+    display: block;
+    text-align: left;
+    color: #9de8ba;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.catch-topic-select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 12px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(157, 232, 186, 0.3);
+    background: #0b1728;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.catch-topic-select:focus {
+    outline: 2px solid rgba(90, 255, 158, 0.5);
+    outline-offset: 2px;
+}
+
+.catch-start-btn {
+    width: 100%;
+    min-height: 55px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(45, 225, 119, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catch-start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(45, 225, 119, 0.3);
+}
+
+.catch-start-card .catch-help {
+    margin-top: 16px;
+}
+
+.catch-best-line {
+    margin: 12px 0 0 !important;
+    color: #ffd97a !important;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.catch-error {
+    margin-bottom: 14px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 75, 95, 0.08);
+    border: 1px solid rgba(255, 75, 95, 0.25);
+    color: #ffadb6;
+    font-size: 14px;
+}
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+.catch-new-best {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(255, 217, 122, 0.12);
+    border: 1px solid rgba(255, 217, 122, 0.4);
+    color: #ffd97a;
+    font-weight: 800;
+    animation: catchFloat 1.6s ease-in-out infinite;
+}
+
+.catch-result-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.catch-result-stat {
+    padding: 16px 8px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.catch-result-stat span {
+    font-size: 24px;
+}
+
+.catch-result-stat strong {
+    font-size: 21px;
+    color: #ffffff;
+}
+
+.catch-result-stat small {
+    color: #8493a5;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.catch-result-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.catch-result-buttons button,
+.catch-result-buttons a {
+    min-height: 46px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.catch-result-buttons button {
+    border: none;
+    background: linear-gradient(135deg, #45ec88, #16a75b);
+    color: #06150d;
+}
+
+.catch-result-buttons .catch-secondary-btn,
+.catch-result-buttons a {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #dce5ee;
+}
+
+.catch-result-buttons button:hover,
+.catch-result-buttons a:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes catchPop {
+    0% {
+        scale: 1;
+    }
+
+    40% {
+        scale: 1.12;
+    }
+
+    100% {
+        scale: 0.85;
+    }
+}
+
+@keyframes feedbackIn {
+    from {
+        opacity: 0;
+        translate: 0 8px;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes catchFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+    .catch-header {
+        padding: 12px 15px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .catch-header-left {
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .catch-header h1 {
+        font-size: 19px;
+    }
+
+    .catch-back {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+
+    .catch-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    .catch-stat {
+        padding: 7px 4px;
+        text-align: center;
+        font-size: 11px;
+    }
+
+    .catch-content {
+        padding: 12px 10px 0;
+        gap: 10px;
+    }
+
+    .catch-question {
+        padding: 12px 14px;
+        border-radius: 14px;
+    }
+
+    .catch-question h2 {
+        font-size: 16px;
+    }
+
+    .catch-arena {
+        height: clamp(320px, 52vh, 480px);
+        border-radius: 14px;
+    }
+
+    .catch-item {
+        padding: 7px 4px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+
+    .catch-basket {
+        height: 40px;
+    }
+
+    .catch-basket span {
+        font-size: 22px;
+    }
+
+    .catch-feedback-card {
+        padding: 12px;
+    }
+
+    .catch-feedback-card p {
+        font-size: 13px;
+    }
+
+    .catch-move-btn {
+        flex: 1;
+        max-width: 110px;
+        height: 60px;
+    }
+
+    .catch-pause-btn {
+        min-width: 0;
+        padding: 0 12px;
+    }
+
+    .catch-center {
+        padding: 20px 12px;
+    }
+
+    .catch-start-card,
+    .catch-result {
+        padding: 28px 18px;
+    }
+
+    .catch-big-icon,
+    .catch-result-icon {
+        font-size: 52px;
+    }
+
+    .catch-start-card h1,
+    .catch-result h1 {
+        font-size: 25px;
+    }
+
+    .catch-rules {
+        grid-template-columns: 1fr;
+    }
+
+    .catch-result-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catch-result-buttons {
+        flex-direction: column;
+    }
+
+    .catch-result-buttons button,
+    .catch-result-buttons a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .catch-header h1 {
+        font-size: 17px;
+    }
+
+    .catch-stat {
+        font-size: 10px;
+    }
+
+    .catch-item {
+        font-size: 11px;
+        padding: 6px 3px;
+    }
+}

@@ -1,4 +1,15 @@
-const lessonData = [
+// Newer topics live in their own files to keep this one manageable.
+import strings from "./topics/strings.js";
+import userInput from "./topics/user-input.js";
+import loopControl from "./topics/loop-control.js";
+import tuplesSets from "./topics/tuples-sets.js";
+import dictionaries from "./topics/dictionaries.js";
+import randomModules from "./topics/random-modules.js";
+import errorHandling from "./topics/error-handling.js";
+import turtleGraphics from "./topics/turtle-graphics.js";
+import classesObjects from "./topics/classes-objects.js";
+
+const coreTopics = [
     // =========================================================
     // 1. PYTHON BASICS
     // =========================================================
@@ -174,6 +185,8 @@ print(10 / 2)`,
                 answer:
                     `print("Alex")`,
 
+                flexible: true,
+
                 points: 20
             },
 
@@ -210,6 +223,23 @@ print("Python is fun!")`,
                     `print(20 - 8)`,
 
                 points: 25
+            },
+
+            {
+                id: 1007,
+                title: "Print and Calculate",
+                difficulty: "Medium",
+
+                description:
+                    'Write a program that prints the text "5 x 4 =" followed by the result of 5 * 4 on the same line.',
+
+                hint:
+                    'Use a comma inside print() to print text and a calculation together.',
+
+                answer:
+                    `print("5 x 4 =", 5 * 4)`,
+
+                points: 30
             }
         ],
 
@@ -502,6 +532,8 @@ print(total)`,
                 answer:
                     `name = "Alex"`,
 
+                flexible: true,
+
                 points: 20
             },
 
@@ -555,6 +587,8 @@ score = 50`,
                     `name = "Sam"
 age = 11`,
 
+                flexible: true,
+
                 points: 25
             },
 
@@ -573,6 +607,25 @@ age = 11`,
                     `a = 10
 b = 5
 print(a + b)`,
+
+                points: 30
+            },
+
+            {
+                id: 2006,
+                title: "Update a Score",
+                difficulty: "Medium",
+
+                description:
+                    "Create a variable called score with the value 10. Add 5 to it using score = score + 5, then print score.",
+
+                hint:
+                    "Python uses the old value of score to work out the new value.",
+
+                answer:
+                    `score = 10
+score = score + 5
+print(score)`,
 
                 points: 30
             }
@@ -1250,6 +1303,90 @@ print(7 % 2)`,
 1`,
 
                 points: 10
+            },
+
+            {
+                id: 405,
+                title: "Assignment Shortcuts",
+                icon: "⚡",
+
+                explanation:
+                    "Programs often need to change a variable by adding or taking away a number, such as when a player scores points. Python has handy shortcuts for this. score += 5 means the same as score = score + 5, and score -= 3 means the same as score = score - 3.",
+
+                example: `score = 10
+
+score += 5
+print(score)
+
+score -= 3
+print(score)`,
+
+                output: `15
+12`,
+
+                points: 10
+            },
+
+            {
+                id: 406,
+                title: "Powers and Floor Division",
+                icon: "🚀",
+
+                explanation:
+                    "The ** operator raises a number to a power. For example, 2 ** 3 means 2 * 2 * 2. The // operator is called floor division. It divides two numbers and gives a whole number answer by throwing away anything after the decimal point.",
+
+                example: `print(2 ** 3)
+print(5 ** 2)
+print(7 // 2)
+print(10 // 3)`,
+
+                output: `8
+25
+3
+3`,
+
+                points: 10
+            },
+
+            {
+                id: 407,
+                title: "Order of Operations",
+                icon: "🧠",
+
+                explanation:
+                    "When a calculation has more than one operator, Python follows the same rules as in maths class. Multiplication and division happen before addition and subtraction. If we want Python to do a part of the calculation first, we can put it inside brackets ().",
+
+                example: `print(2 + 3 * 4)
+print((2 + 3) * 4)
+print(10 - 4 / 2)`,
+
+                output: `14
+20
+8.0`,
+
+                points: 10
+            },
+
+            {
+                id: 408,
+                title: "Logical Operators: and, or, not",
+                icon: "🔗",
+
+                explanation:
+                    "Logical operators let us combine True and False values. and gives True only when both sides are True. or gives True when at least one side is True. not flips a value, so True becomes False and False becomes True.",
+
+                example: `age = 12
+has_ticket = True
+
+print(age >= 10 and has_ticket)
+print(age < 5 or has_ticket)
+print(not has_ticket)`,
+
+                output: `True
+True
+False`,
+
+                points: 10
             }
         ],
 
@@ -1320,6 +1457,81 @@ print(7 % 2)`,
                     `price = 10
 quantity = 3
 print(price * quantity)`,
+
+                points: 30
+            },
+
+            {
+                id: 4005,
+                title: "Level Up with +=",
+                difficulty: "Easy",
+
+                description:
+                    "Create a variable called lives with the value 3. Use += to add 2 more lives, then print lives.",
+
+                hint:
+                    "lives += 2 adds 2 to the value already stored in lives.",
+
+                answer:
+                    `lives = 3
+lives += 2
+print(lives)`,
+
+                points: 25
+            },
+
+            {
+                id: 4006,
+                title: "Power Up",
+                difficulty: "Easy",
+
+                description:
+                    "Print the result of 3 to the power of 2.",
+
+                hint:
+                    "Use the ** operator.",
+
+                answer:
+                    `print(3 ** 2)`,
+
+                points: 25
+            },
+
+            {
+                id: 4007,
+                title: "Share the Sweets",
+                difficulty: "Medium",
+
+                description:
+                    "There are 17 sweets to share equally between 5 friends. Print how many sweets each friend gets, then print how many sweets are left over.",
+
+                hint:
+                    "Use // to find how many each friend gets and % to find the leftovers.",
+
+                answer:
+                    `sweets = 17
+friends = 5
+print(sweets // friends)
+print(sweets % friends)`,
+
+                points: 30
+            },
+
+            {
+                id: 4008,
+                title: "Check Two Conditions",
+                difficulty: "Medium",
+
+                description:
+                    "Create a variable called age with the value 11 and a variable called height with the value 140. Print whether age is at least 10 and height is at least 130.",
+
+                hint:
+                    "Use >= twice and join the two comparisons with and.",
+
+                answer:
+                    `age = 11
+height = 140
+print(age >= 10 and height >= 130)`,
 
                 points: 30
             }
@@ -1438,6 +1650,44 @@ print(price * quantity)`,
 
                 explanation:
                     "10 divided by 3 leaves a remainder of 1."
+            },
+
+            {
+                id: 7,
+
+                question:
+                    "What will this code print?\n\nprint(2 + 3 * 4)",
+
+                options: [
+                    "20",
+                    "24",
+                    "9",
+                    "14"
+                ],
+
+                answer: 3,
+
+                explanation:
+                    "Python does multiplication first. 3 * 4 is 12, and 2 + 12 is 14."
+            },
+
+            {
+                id: 8,
+
+                question:
+                    "What does score += 2 do?",
+
+                options: [
+                    "Sets score to 2",
+                    "Checks if score equals 2",
+                    "Adds 2 to score",
+                    "Multiplies score by 2"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "score += 2 is a shortcut for score = score + 2, so it adds 2 to score."
             }
         ]
     },
@@ -1534,6 +1784,81 @@ else:
                 output: `Good job!`,
 
                 points: 10
+            },
+
+            {
+                id: 505,
+                title: "Using and / or in Conditions",
+                icon: "🔗",
+
+                explanation:
+                    "Sometimes a decision depends on more than one thing. We can use and when both conditions must be True, and or when only one of them needs to be True. This lets us write smarter conditions in a single if statement.",
+
+                example: `age = 12
+has_ticket = True
+
+if age >= 10 and has_ticket:
+    print("Enjoy the ride!")
+else:
+    print("Sorry, you cannot ride.")
+
+day = "Sunday"
+
+if day == "Saturday" or day == "Sunday":
+    print("It's the weekend!")`,
+
+                output: `Enjoy the ride!
+It's the weekend!`,
+
+                points: 10
+            },
+
+            {
+                id: 506,
+                title: "Nested if Statements",
+                icon: "🔁",
+
+                explanation:
+                    "An if statement can be placed inside another if statement. This is called nesting. The inner if is only checked when the outer condition is True. Remember to indent the inner block a little further so Python knows which code belongs to which if.",
+
+                example: `is_weekend = True
+is_sunny = False
+
+if is_weekend:
+    print("No school today!")
+    if is_sunny:
+        print("Let's go to the park!")
+    else:
+        print("Let's play board games!")`,
+
+                output: `No school today!
+Let's play board games!`,
+
+                points: 10
+            },
+
+            {
+                id: 507,
+                title: "Mini Grade Checker",
+                icon: "🏆",
+
+                explanation:
+                    "We can use if, elif, and else together to build a grade checker. Python checks each condition from top to bottom and runs the first block whose condition is True. Once one block runs, Python skips the rest.",
+
+                example: `score = 72
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 75:
+    print("Grade: B")
+elif score >= 60:
+    print("Grade: C")
+else:
+    print("Grade: D")`,
+
+                output: `Grade: C`,
+
+                points: 10
             }
         ],
 
@@ -1598,6 +1923,98 @@ if number > 10:
     print("Greater than 10")`,
 
                 points: 30
+            },
+
+            {
+                id: 5004,
+                title: "Check the Password",
+                difficulty: "Easy",
+
+                description:
+                    'Create a variable called password with the value "python123". If password is equal to "python123", print Access granted. Otherwise print Access denied.',
+
+                hint:
+                    "Use == to check whether two values are equal.",
+
+                answer:
+                    `password = "python123"
+
+if password == "python123":
+    print("Access granted")
+else:
+    print("Access denied")`,
+
+                points: 25
+            },
+
+            {
+                id: 5005,
+                title: "Even or Odd",
+                difficulty: "Medium",
+
+                description:
+                    "Create a variable called number with the value 7. Print Even if the number is even, otherwise print Odd.",
+
+                hint:
+                    "A number is even when number % 2 == 0.",
+
+                answer:
+                    `number = 7
+
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")`,
+
+                points: 30
+            },
+
+            {
+                id: 5006,
+                title: "Weekend Checker",
+                difficulty: "Easy",
+
+                description:
+                    'Create a variable called day with the value "Saturday". If day is "Saturday" or "Sunday", print Weekend! Otherwise print School day.',
+
+                hint:
+                    "Use or to join two == checks.",
+
+                answer:
+                    `day = "Saturday"
+
+if day == "Saturday" or day == "Sunday":
+    print("Weekend!")
+else:
+    print("School day")`,
+
+                points: 25
+            },
+
+            {
+                id: 5007,
+                title: "Grade Checker",
+                difficulty: "Medium",
+
+                description:
+                    "Create a variable called score with the value 85. Print A for 90 or more, B for 75 or more, C for 60 or more, and D for anything lower.",
+
+                hint:
+                    "Use if, elif, elif, and else. Start with the highest grade.",
+
+                answer:
+                    `score = 85
+
+if score >= 90:
+    print("A")
+elif score >= 75:
+    print("B")
+elif score >= 60:
+    print("C")
+else:
+    print("D")`,
+
+                points: 35
             }
         ],
 
@@ -1676,6 +2093,82 @@ if number > 10:
 
                 explanation:
                     "12 is greater than or equal to 10, so Python prints Yes."
+            },
+
+            {
+                id: 5,
+
+                question:
+                    "What will this code print?\n\nscore = 40\n\nif score >= 50:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")",
+
+                options: [
+                    "Pass",
+                    "40",
+                    "Fail",
+                    "Nothing"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "40 is not 50 or more, so the condition is False and the else block prints Fail."
+            },
+
+            {
+                id: 6,
+
+                question:
+                    "When is this condition True?\n\nage >= 10 and has_ticket",
+
+                options: [
+                    "When only one part is True",
+                    "When both parts are False",
+                    "Always",
+                    "When both parts are True"
+                ],
+
+                answer: 3,
+
+                explanation:
+                    "The and operator only gives True when both conditions are True."
+            },
+
+            {
+                id: 7,
+
+                question:
+                    "Which symbol must come at the end of an if line?",
+
+                options: [
+                    ":",
+                    ";",
+                    ".",
+                    "!"
+                ],
+
+                answer: 0,
+
+                explanation:
+                    "Every if, elif, and else line ends with a colon :."
+            },
+
+            {
+                id: 8,
+
+                question:
+                    "What will this code print?\n\nscore = 80\n\nif score >= 90:\n    print(\"A\")\nelif score >= 70:\n    print(\"B\")\nelse:\n    print(\"C\")",
+
+                options: [
+                    "A",
+                    "B",
+                    "C",
+                    "A and B"
+                ],
+
+                answer: 1,
+
+                explanation:
+                    "80 is not 90 or more, but it is 70 or more, so the elif block prints B."
             }
         ]
     },
@@ -1771,6 +2264,113 @@ Python is fun!
 Python is fun!`,
 
                 points: 15
+            },
+
+            {
+                id: 605,
+                title: "Counting with a Step",
+                icon: "📶",
+
+                explanation:
+                    "range() can take three numbers: a start, a stop, and a step. The step tells Python how much to jump each time. range(2, 11, 2) starts at 2, jumps by 2, and stops before reaching 11.",
+
+                example: `for number in range(2, 11, 2):
+    print(number)`,
+
+                output: `2
+4
+6
+8
+10`,
+
+                points: 15
+            },
+
+            {
+                id: 606,
+                title: "Counting Down",
+                icon: "🚀",
+
+                explanation:
+                    "If we use a negative step, range() counts backwards. range(5, 0, -1) starts at 5 and goes down by 1 each time, stopping before it reaches 0. This is perfect for a rocket countdown!",
+
+                example: `for number in range(5, 0, -1):
+    print(number)
+
+print("Blast off!")`,
+
+                output: `5
+4
+3
+2
+1
+Blast off!`,
+
+                points: 15
+            },
+
+            {
+                id: 607,
+                title: "Looping Through a List",
+                icon: "📋",
+
+                explanation:
+                    "A for loop can go through every item in a list, one at a time. Each time the loop runs, the loop variable holds the next item from the list. This means we do not need to know how many items the list has.",
+
+                example: `pets = ["cat", "dog", "fish"]
+
+for pet in pets:
+    print("I love my", pet)`,
+
+                output: `I love my cat
+I love my dog
+I love my fish`,
+
+                points: 15
+            },
+
+            {
+                id: 608,
+                title: "Adding Up with a Loop",
+                icon: "➕",
+
+                explanation:
+                    "Loops can help us add up lots of numbers. We start with a total of 0, and each time the loop runs we add the next number to the total. After the loop finishes, we print the final total.",
+
+                example: `total = 0
+
+for number in range(1, 6):
+    total += number
+
+print(total)`,
+
+                output: `15`,
+
+                points: 15
+            },
+
+            {
+                id: 609,
+                title: "Stopping a While Loop",
+                icon: "⏱️",
+
+                explanation:
+                    "A while loop keeps going until its condition becomes False. In a countdown, we take 1 away from the counter each time. When the counter reaches 0, the condition countdown > 0 is False and the loop stops. If the counter never changed, the loop would run forever!",
+
+                example: `countdown = 3
+
+while countdown > 0:
+    print(countdown)
+    countdown -= 1
+
+print("Go!")`,
+
+                output: `3
+2
+1
+Go!`,
+
+                points: 15
             }
         ],
 
@@ -1828,6 +2428,86 @@ Python is fun!`,
 while count <= 3:
     print(count)
     count += 1`,
+
+                points: 35
+            },
+
+            {
+                id: 6004,
+                title: "Even Numbers",
+                difficulty: "Easy",
+
+                description:
+                    "Use a for loop to print the even numbers 2, 4, 6, 8, and 10.",
+
+                hint:
+                    "Use range(2, 11, 2).",
+
+                answer:
+                    `for number in range(2, 11, 2):
+    print(number)`,
+
+                points: 30
+            },
+
+            {
+                id: 6005,
+                title: "Say Hi to Friends",
+                difficulty: "Easy",
+
+                description:
+                    'Create a list called friends with "Mia", "Leo" and "Zara". Use a for loop to print Hi followed by each name.',
+
+                hint:
+                    'Use for friend in friends: and print("Hi", friend).',
+
+                answer:
+                    `friends = ["Mia", "Leo", "Zara"]
+
+for friend in friends:
+    print("Hi", friend)`,
+
+                points: 30
+            },
+
+            {
+                id: 6006,
+                title: "Rocket Countdown",
+                difficulty: "Medium",
+
+                description:
+                    "Use a for loop to count down from 10 to 1, then print Blast off!",
+
+                hint:
+                    "Use range(10, 0, -1) and put the last print() outside the loop.",
+
+                answer:
+                    `for number in range(10, 0, -1):
+    print(number)
+
+print("Blast off!")`,
+
+                points: 35
+            },
+
+            {
+                id: 6007,
+                title: "Add Up 1 to 10",
+                difficulty: "Medium",
+
+                description:
+                    "Use a loop to add up all the numbers from 1 to 10, then print the total.",
+
+                hint:
+                    "Start with total = 0 and use total += number inside the loop.",
+
+                answer:
+                    `total = 0
+
+for number in range(1, 11):
+    total += number
+
+print(total)`,
 
                 points: 35
             }
@@ -1908,6 +2588,82 @@ while count <= 3:
 
                 explanation:
                     "Python starts range(5) at 0."
+            },
+
+            {
+                id: 5,
+
+                question:
+                    "What will this code print?\n\nfor i in range(1, 4):\n    print(i)",
+
+                options: [
+                    "0 1 2 3",
+                    "1 2 3 4",
+                    "1 2 3",
+                    "0 1 2"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "range(1, 4) starts at 1 and stops before 4, so it gives 1, 2 and 3."
+            },
+
+            {
+                id: 6,
+
+                question:
+                    "What does range(10, 0, -1) do?",
+
+                options: [
+                    "Counts up from 0 to 10",
+                    "Gives the number 10 only once",
+                    "Counts down from 10 to 0",
+                    "Counts down from 10 to 1"
+                ],
+
+                answer: 3,
+
+                explanation:
+                    "The step -1 makes range() count backwards. It starts at 10 and stops before reaching 0, so the last number is 1."
+            },
+
+            {
+                id: 7,
+
+                question:
+                    "What will this code print?\n\ntotal = 0\n\nfor n in range(1, 4):\n    total += n\n\nprint(total)",
+
+                options: [
+                    "6",
+                    "3",
+                    "4",
+                    "10"
+                ],
+
+                answer: 0,
+
+                explanation:
+                    "The loop adds 1, 2 and 3 to the total. 1 + 2 + 3 = 6."
+            },
+
+            {
+                id: 8,
+
+                question:
+                    "What happens if a while loop's condition never becomes False?",
+
+                options: [
+                    "The loop runs once",
+                    "Python skips the loop",
+                    "The loop runs forever",
+                    "The computer turns off"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "If the condition always stays True, the while loop never stops. This is called an infinite loop."
             }
         ]
     },
@@ -2001,6 +2757,129 @@ print(fruits)`,
                     `['Apple', 'Orange', 'Mango']`,
 
                 points: 15
+            },
+
+            {
+                id: 705,
+                title: "Counting Items with len()",
+                icon: "📏",
+
+                explanation:
+                    "The len() function tells us how many items are inside a list. This is useful when we want to know how big a list is, such as how many players are in a game.",
+
+                example: `fruits = ["Apple", "Banana", "Mango"]
+
+print(len(fruits))`,
+
+                output: `3`,
+
+                points: 15
+            },
+
+            {
+                id: 706,
+                title: "Removing Items",
+                icon: "🗑️",
+
+                explanation:
+                    "We can take items out of a list in two main ways. remove() deletes the first item that matches a value. pop() takes the last item out of the list and gives it back to us, so we can store it in a variable.",
+
+                example: `fruits = ["Apple", "Banana", "Mango", "Grape"]
+
+fruits.remove("Banana")
+print(fruits)
+
+last = fruits.pop()
+print(last)
+print(fruits)`,
+
+                output: `['Apple', 'Mango', 'Grape']
+Grape
+['Apple', 'Mango']`,
+
+                points: 15
+            },
+
+            {
+                id: 707,
+                title: "Looping Over a List",
+                icon: "🔁",
+
+                explanation:
+                    "A for loop can visit every item in a list, one after another. This lets us do something with each item, such as printing it, without writing a separate line for every item.",
+
+                example: `colors = ["red", "green", "blue"]
+
+for color in colors:
+    print(color)`,
+
+                output: `red
+green
+blue`,
+
+                points: 15
+            },
+
+            {
+                id: 708,
+                title: "Checking with in",
+                icon: "🔍",
+
+                explanation:
+                    "The in keyword checks whether a value is inside a list. It gives True if the value is found and False if it is not. This is often used together with an if statement.",
+
+                example: `fruits = ["Apple", "Banana", "Mango"]
+
+print("Mango" in fruits)
+print("Grape" in fruits)`,
+
+                output: `True
+False`,
+
+                points: 15
+            },
+
+            {
+                id: 709,
+                title: "Sorting a List",
+                icon: "🔤",
+
+                explanation:
+                    "The sort() method puts the items in a list in order. Numbers are sorted from smallest to largest, and words are sorted in alphabetical order. sort() changes the list itself.",
+
+                example: `numbers = [5, 2, 9, 1]
+numbers.sort()
+print(numbers)
+
+names = ["Zoe", "Adam", "Mia"]
+names.sort()
+print(names)`,
+
+                output: `[1, 2, 5, 9]
+['Adam', 'Mia', 'Zoe']`,
+
+                points: 15
+            },
+
+            {
+                id: 710,
+                title: "Slicing a List",
+                icon: "✂️",
+
+                explanation:
+                    "Slicing lets us take a part of a list. letters[0:2] gives the items from index 0 up to, but not including, index 2. We can also use a negative index such as -1 to get the last item.",
+
+                example: `letters = ["a", "b", "c", "d", "e"]
+
+print(letters[0:2])
+print(letters[1:4])
+print(letters[-1])`,
+
+                output: `['a', 'b']
+['b', 'c', 'd']
+e`,
+
+                points: 15
             }
         ],
 
@@ -2056,6 +2935,118 @@ print(fruits[0])`,
 fruits.append("Mango")`,
 
                 points: 30
+            },
+
+            {
+                id: 7004,
+                title: "Count the Items",
+                difficulty: "Easy",
+
+                description:
+                    'Create a list called animals with "cat", "dog", "rabbit" and "hamster". Print how many items are in the list.',
+
+                hint:
+                    "Use len().",
+
+                answer:
+                    `animals = ["cat", "dog", "rabbit", "hamster"]
+print(len(animals))`,
+
+                points: 25
+            },
+
+            {
+                id: 7005,
+                title: "Remove an Item",
+                difficulty: "Easy",
+
+                description:
+                    'Create a list called colors with "red", "green" and "blue". Remove "green", then print the list.',
+
+                hint:
+                    'Use colors.remove("green").',
+
+                answer:
+                    `colors = ["red", "green", "blue"]
+colors.remove("green")
+print(colors)`,
+
+                points: 25
+            },
+
+            {
+                id: 7006,
+                title: "Is It in the List?",
+                difficulty: "Easy",
+
+                description:
+                    'Create a list called fruits with "Apple", "Banana" and "Mango". Print whether "Banana" is in the list.',
+
+                hint:
+                    'Use print("Banana" in fruits).',
+
+                answer:
+                    `fruits = ["Apple", "Banana", "Mango"]
+print("Banana" in fruits)`,
+
+                points: 25
+            },
+
+            {
+                id: 7007,
+                title: "Print Every Item",
+                difficulty: "Medium",
+
+                description:
+                    'Create a list called toys with "ball", "kite" and "robot". Use a for loop to print each toy on its own line.',
+
+                hint:
+                    "Use for toy in toys:",
+
+                answer:
+                    `toys = ["ball", "kite", "robot"]
+
+for toy in toys:
+    print(toy)`,
+
+                points: 30
+            },
+
+            {
+                id: 7008,
+                title: "Sort the Scores",
+                difficulty: "Medium",
+
+                description:
+                    "Create a list called scores with 45, 90, 12 and 78. Sort the list from smallest to largest, then print it.",
+
+                hint:
+                    "Use scores.sort().",
+
+                answer:
+                    `scores = [45, 90, 12, 78]
+scores.sort()
+print(scores)`,
+
+                points: 30
+            },
+
+            {
+                id: 7009,
+                title: "First Three Items",
+                difficulty: "Medium",
+
+                description:
+                    "Create a list called numbers with 10, 20, 30, 40 and 50. Use slicing to print only the first three items.",
+
+                hint:
+                    "Use numbers[0:3].",
+
+                answer:
+                    `numbers = [10, 20, 30, 40, 50]
+print(numbers[0:3])`,
+
+                points: 35
             }
         ],
 
@@ -2134,6 +3125,82 @@ fruits.append("Mango")`,
 
                 explanation:
                     "The first item in a Python list has index 0."
+            },
+
+            {
+                id: 5,
+
+                question:
+                    "What will this code print?\n\npets = [\"cat\", \"dog\", \"fish\"]\nprint(len(pets))",
+
+                options: [
+                    "2",
+                    "3",
+                    "4",
+                    "fish"
+                ],
+
+                answer: 1,
+
+                explanation:
+                    "len() counts the items in the list. There are 3 pets."
+            },
+
+            {
+                id: 6,
+
+                question:
+                    "Which method removes a matching item from a list?",
+
+                options: [
+                    "append()",
+                    "sort()",
+                    "len()",
+                    "remove()"
+                ],
+
+                answer: 3,
+
+                explanation:
+                    "remove() deletes the first item in the list that matches the value you give it."
+            },
+
+            {
+                id: 7,
+
+                question:
+                    "What will this code print?\n\nfruits = [\"Apple\", \"Mango\"]\nprint(\"Mango\" in fruits)",
+
+                options: [
+                    "Mango",
+                    "1",
+                    "True",
+                    "False"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "\"Mango\" is inside the list, so the in check gives True."
+            },
+
+            {
+                id: 8,
+
+                question:
+                    "What will numbers[0:2] give?\n\nnumbers = [10, 20, 30, 40]",
+
+                options: [
+                    "[10, 20]",
+                    "[10, 20, 30]",
+                    "[20, 30]",
+                    "[0, 2]"
+                ],
+
+                answer: 0,
+
+                explanation:
+                    "The slice starts at index 0 and stops before index 2, so it gives the first two items: [10, 20]."
             }
         ]
     },
@@ -2231,6 +3298,90 @@ Hello!
 Hello!`,
 
                 points: 15
+            },
+
+            {
+                id: 805,
+                title: "Default Parameters",
+                icon: "🎛️",
+
+                explanation:
+                    "A parameter can have a default value. If we call the function without giving that information, Python uses the default value instead. We set a default by writing = and a value after the parameter name.",
+
+                example: `def greet(name="friend"):
+    print("Hello", name)
+
+greet("Alex")
+greet()`,
+
+                output: `Hello Alex
+Hello friend`,
+
+                points: 15
+            },
+
+            {
+                id: 806,
+                title: "Functions Calling Functions",
+                icon: "📞",
+
+                explanation:
+                    "A function can call another function. This lets us build bigger tools out of smaller ones, a bit like building a model out of blocks. Each function does one small job, and together they solve a bigger problem.",
+
+                example: `def double(number):
+    return number * 2
+
+def double_and_add_one(number):
+    return double(number) + 1
+
+print(double_and_add_one(5))`,
+
+                output: `11`,
+
+                points: 15
+            },
+
+            {
+                id: 807,
+                title: "Returning True or False",
+                icon: "✅",
+
+                explanation:
+                    "A function can return a boolean value, either True or False. This is handy for asking yes-or-no questions, such as whether a number is even. The answer can then be printed or used in an if statement.",
+
+                example: `def is_even(number):
+    return number % 2 == 0
+
+print(is_even(4))
+print(is_even(7))`,
+
+                output: `True
+False`,
+
+                points: 15
+            },
+
+            {
+                id: 808,
+                title: "Where Variables Live (Scope)",
+                icon: "🏠",
+
+                explanation:
+                    "A variable created inside a function only lives inside that function. This is called a local variable, and the rest of the program cannot see it. A variable created outside all functions can be read from inside a function. Think of a function as a room: things made inside the room stay in the room.",
+
+                example: `bonus = 10
+
+def add_bonus(score):
+    total = score + bonus
+    return total
+
+print(add_bonus(5))
+print(bonus)`,
+
+                output: `15
+10`,
+
+                points: 15
             }
         ],
 
@@ -2287,6 +3438,110 @@ Hello!`,
     return a + b`,
 
                 points: 35
+            },
+
+            {
+                id: 8004,
+                title: "Say Hi Twice",
+                difficulty: "Easy",
+
+                description:
+                    "Create a function called say_hi that prints Hi! Then call the function two times.",
+
+                hint:
+                    "Write say_hi() twice after the function.",
+
+                answer:
+                    `def say_hi():
+    print("Hi!")
+
+say_hi()
+say_hi()`,
+
+                points: 25
+            },
+
+            {
+                id: 8005,
+                title: "Square a Number",
+                difficulty: "Easy",
+
+                description:
+                    "Create a function called square that returns a number multiplied by itself. Print the result of square(4).",
+
+                hint:
+                    "Use return number * number.",
+
+                answer:
+                    `def square(number):
+    return number * number
+
+print(square(4))`,
+
+                points: 30
+            },
+
+            {
+                id: 8006,
+                title: "Default Greeting",
+                difficulty: "Medium",
+
+                description:
+                    'Create a function called greet with a parameter name that has the default value "friend". It should print Hello followed by the name. Call greet() without any value.',
+
+                hint:
+                    'Use def greet(name="friend"):',
+
+                answer:
+                    `def greet(name="friend"):
+    print("Hello", name)
+
+greet()`,
+
+                points: 35
+            },
+
+            {
+                id: 8007,
+                title: "Is It Even?",
+                difficulty: "Medium",
+
+                description:
+                    "Create a function called is_even that returns True if a number is even and False if it is not. Print the result of is_even(10).",
+
+                hint:
+                    "Use return number % 2 == 0.",
+
+                answer:
+                    `def is_even(number):
+    return number % 2 == 0
+
+print(is_even(10))`,
+
+                points: 35
+            },
+
+            {
+                id: 8008,
+                title: "Function Team-Up",
+                difficulty: "Medium",
+
+                description:
+                    'Create a function called area that returns width * height. Then create a function called show_area that calls area() and prints "The area is" followed by the answer. Call show_area(3, 4).',
+
+                hint:
+                    'Inside show_area, use print("The area is", area(width, height)).',
+
+                answer:
+                    `def area(width, height):
+    return width * height
+
+def show_area(width, height):
+    print("The area is", area(width, height))
+
+show_area(3, 4)`,
+
+                points: 40
             }
         ],
 
@@ -2365,9 +3620,109 @@ Hello!`,
 
                 explanation:
                     "The return keyword sends a value back from a function."
+            },
+
+            {
+                id: 5,
+
+                question:
+                    "What will this code print?\n\ndef greet(name=\"friend\"):\n    print(\"Hello\", name)\n\ngreet()",
+
+                options: [
+                    "Hello",
+                    "Hello name",
+                    "Error",
+                    "Hello friend"
+                ],
+
+                answer: 3,
+
+                explanation:
+                    "No name was given, so Python uses the default value \"friend\"."
+            },
+
+            {
+                id: 6,
+
+                question:
+                    "What will this code print?\n\ndef is_big(n):\n    return n > 10\n\nprint(is_big(3))",
+
+                options: [
+                    "True",
+                    "False",
+                    "3",
+                    "10"
+                ],
+
+                answer: 1,
+
+                explanation:
+                    "3 is not greater than 10, so the function returns False."
+            },
+
+            {
+                id: 7,
+
+                question:
+                    "What will this code print?\n\ndef double(n):\n    return n * 2\n\nprint(double(double(3)))",
+
+                options: [
+                    "6",
+                    "9",
+                    "12",
+                    "33"
+                ],
+
+                answer: 2,
+
+                explanation:
+                    "double(3) returns 6, and then double(6) returns 12."
+            },
+
+            {
+                id: 8,
+
+                question:
+                    "A variable created inside a function is...",
+
+                options: [
+                    "Only usable inside that function",
+                    "Usable everywhere in the program",
+                    "Deleted before the function runs",
+                    "Always equal to 0"
+                ],
+
+                answer: 0,
+
+                explanation:
+                    "Variables made inside a function are local. They only exist inside that function."
             }
         ]
     }
+];
+
+const bySlug = (slug) =>
+    coreTopics.find(topic => topic.slug === slug);
+
+// Ordered so each topic only uses ideas from the ones before it.
+const lessonData = [
+    bySlug("python-basics"),
+    bySlug("variables"),
+    bySlug("data-types"),
+    bySlug("operators"),
+    strings,
+    userInput,
+    bySlug("if-else"),
+    bySlug("loops"),
+    loopControl,
+    bySlug("lists"),
+    tuplesSets,
+    dictionaries,
+    bySlug("functions"),
+    randomModules,
+    errorHandling,
+    turtleGraphics,
+    classesObjects
 ];
 
 export default lessonData;

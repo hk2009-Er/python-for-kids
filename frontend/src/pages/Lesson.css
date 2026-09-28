@@ -493,3 +493,133 @@
     }
 
 }
+
+/* =========================================
+   TRY IT / LIVE OUTPUT
+========================================= */
+
+.code-box .code-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.try-it-button {
+    padding: 6px 13px;
+
+    border-radius: 8px;
+
+    background: #16a34a;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.try-it-button:hover:not(:disabled) {
+    background: #15803d;
+
+    transform: translateY(-1px);
+}
+
+
+.try-it-button:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+
+.output-live {
+    color: #16a34a;
+}
+
+
+.output-box pre.output-status {
+    color: #4f46e5;
+
+    font-family: inherit;
+
+    font-weight: 700;
+}
+
+
+.output-box pre.output-error {
+    color: #b91c1c;
+
+    background: #fef2f2;
+}
+
+
+/* =========================================
+   COMPLETED / PRACTICE
+========================================= */
+
+.lesson-title h1 {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.lesson-completed-badge {
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    border: 1px solid #bbf7d0;
+
+    color: #15803d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.lesson-complete-links {
+    margin-top: 12px;
+}
+
+
+.lesson-practice {
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #f1f5f9;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+.lesson-practice a {
+    color: #4f46e5;
+
+    font-weight: 700;
+}
+
+
+.lesson-practice a:hover {
+    text-decoration: underline;
+}

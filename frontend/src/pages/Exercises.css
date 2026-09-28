@@ -281,3 +281,253 @@
     }
 
 }
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.exercises-progress {
+    max-width: 560px;
+
+    margin: 0 auto 30px;
+
+    padding: 18px 22px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+}
+
+
+.exercises-progress-text {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.exercises-progress-text strong {
+    color: #4f46e5;
+
+    font-size: 16px;
+}
+
+
+.exercises-progress-bar {
+    height: 10px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #e2e8f0;
+}
+
+
+.exercises-progress-fill {
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22c55e,
+            #38bdf8
+        );
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.exercise-filters {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 32px;
+}
+
+
+.filter-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+}
+
+
+.filter-label {
+    flex-shrink: 0;
+
+    width: 50px;
+
+    padding-top: 8px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+.filter-chips {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.filter-chip {
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    border: 1px solid #dbe2ea;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.filter-chip:hover {
+    border-color: #a5b4fc;
+
+    color: #4f46e5;
+}
+
+
+.filter-chip.active {
+    background: #4f46e5;
+
+    border-color: #4f46e5;
+
+    color: white;
+}
+
+
+.exercises-empty {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    background: white;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 16px;
+}
+
+
+/* =========================================
+   CARD EXTRAS
+========================================= */
+
+a.exercise-card {
+    display: block;
+
+    color: inherit;
+}
+
+
+.exercise-card.solved {
+    border-color: #bbf7d0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f0fdf4,
+            white 45%
+        );
+}
+
+
+.exercise-badges {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 6px;
+}
+
+
+.solved-badge {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.difficulty.hard {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+.exercise-card:hover .exercise-button {
+    background: #4338ca;
+
+    transform: translateX(2px);
+}
+
+
+@media (max-width: 600px) {
+
+    .filter-row {
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+
+    .filter-label {
+        padding-top: 0;
+    }
+
+}

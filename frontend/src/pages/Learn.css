@@ -328,3 +328,32 @@
     }
 
 }
+
+/* =========================================
+   COMPLETED
+========================================= */
+
+.topic-card.completed {
+    border-color: #bbf7d0;
+}
+
+
+.topic-completed {
+    position: absolute;
+
+    top: 52px;
+
+    right: 20px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #ecfdf5;
+
+    color: #15803d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
