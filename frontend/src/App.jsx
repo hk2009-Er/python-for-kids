@@ -2,7 +2,8 @@ import { lazy, Suspense } from "react";
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    useLocation
 } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -26,6 +27,15 @@ const Contact = lazy(() => import("./pages/Contact"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Admin = lazy(() => import("./pages/Admin"));
+
+// The admin panel has its own header, so the site navbar/footer are hidden there.
+function HideOnAdmin({ children }) {
+
+    const { pathname } = useLocation();
+
+    return pathname.startsWith("/admin") ? null : children;
+}
 
 function App() {
 
@@ -35,7 +45,7 @@ function App() {
             <div className="app">
 
                 {/* Navigation */}
-                <Navbar />
+                <HideOnAdmin><Navbar /></HideOnAdmin>
 
                 {/* Main Website Content */}
                 <main className="main-content">
@@ -111,6 +121,9 @@ function App() {
 
                         <Route path="/terms" element={<Terms />} />
 
+                        {/* Content admin (not linked, noindex) */}
+                        <Route path="/admin" element={<Admin />} />
+
                         {/* 404 */}
                         <Route path="*" element={<NotFound />} />
                     </Routes>
@@ -119,7 +132,7 @@ function App() {
                 </main>
 
                 {/* Footer */}
-                <Footer />
+                <HideOnAdmin><Footer /></HideOnAdmin>
 
             </div>
 

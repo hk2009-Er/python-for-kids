@@ -1,0 +1,14 @@
+# Cloudflare Pages project config (used by `wrangler pages dev` and by
+# Pages builds). Bindings declared here override the dashboard settings.
+name = "python-tutorial-for-kids"
+pages_build_output_dir = "./dist"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "python-for-kids"
+# PLACEHOLDER: replace with the real id printed by
+#   npx wrangler d1 create python-for-kids
+# before deploying. Local dev works with this placeholder as-is.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
