@@ -92,12 +92,16 @@ class CodeRunner extends Component {
             screen: "start",
             paused: false,
             frame: 0,
-            best: loadBest(),
+            best: { distance: 0, xp: 0 },
             result: null
         };
     }
 
     componentDidMount() {
+        // Saved best score is read after mount so the prerendered HTML matches.
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({ best: loadBest() });
+
         document.addEventListener("keydown", this.handleKeyDown);
         window.addEventListener("blur", this.autoPause);
         document.addEventListener("visibilitychange", this.handleVisibility);

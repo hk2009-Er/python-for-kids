@@ -1,0 +1,780 @@
+/* =========================================
+   PROJECT GUIDE PAGE
+========================================= */
+
+.pg-page {
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.pg-hero {
+    padding: 35px 20px 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f0f9ff
+        );
+}
+
+
+.pg-hero-inner {
+    max-width: 900px;
+
+    margin: auto;
+}
+
+
+.pg-back-link {
+    display: inline-block;
+
+    margin-bottom: 25px;
+
+    color: #4f46e5;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.pg-back-link:hover {
+    text-decoration: underline;
+}
+
+
+.pg-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.pg-title-icon {
+    flex-shrink: 0;
+
+    width: 75px;
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 20px;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+
+.pg-title-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 6px 12px;
+
+    margin-bottom: 4px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.pg-level {
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.pg-title h1 {
+    font-size: 35px;
+
+    line-height: 1.2;
+
+    color: #172033;
+}
+
+
+.pg-description {
+    max-width: 700px;
+
+    margin-top: 18px;
+
+    color: #475569;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+.pg-skills {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 16px;
+
+    list-style: none;
+}
+
+
+.pg-skills li {
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid #e0e7ff;
+
+    color: #4f46e5;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.pg-content {
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 45px 20px 80px;
+}
+
+
+.pg-card {
+    min-width: 0;
+
+    margin-bottom: 24px;
+
+    padding: 32px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+
+.pg-card h2 {
+    margin-bottom: 14px;
+
+    font-size: 25px;
+
+    line-height: 1.3;
+
+    color: #1e293b;
+}
+
+
+.pg-text {
+    margin-bottom: 16px;
+
+    color: #475569;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+.pg-tip {
+    margin-top: 6px;
+
+    padding: 15px 18px;
+
+    border-radius: 13px;
+
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+
+    color: #9a3412;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.pg-section-title {
+    margin: 40px 0 18px;
+
+    font-size: 28px;
+
+    color: #1e293b;
+}
+
+
+/* =========================================
+   STEPS
+========================================= */
+
+.pg-steps {
+    list-style: none;
+}
+
+
+.pg-step-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+
+.pg-step-number {
+    flex-shrink: 0;
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #38bdf8
+        );
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+
+.pg-step h3 {
+    font-size: 21px;
+
+    line-height: 1.3;
+
+    color: #1e293b;
+}
+
+
+.pg-note {
+    margin-top: -4px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   CODE + OUTPUT
+========================================= */
+
+.pg-code {
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background: #111827;
+}
+
+
+.pg-code-header,
+.pg-output-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 12px 9px 16px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.pg-code-header {
+    background: #1f2937;
+
+    color: #cbd5e1;
+}
+
+
+.pg-copy-button {
+    flex-shrink: 0;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    background: #374151;
+
+    color: #f9fafb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.pg-copy-button:hover {
+    background: #4f46e5;
+}
+
+
+.pg-code pre,
+.pg-output pre {
+    margin: 0;
+
+    overflow-x: auto;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    tab-size: 4;
+}
+
+
+.pg-code pre {
+    padding: 20px 22px;
+
+    color: #e2e8f0;
+
+    white-space: pre;
+}
+
+
+.pg-output {
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background: #f1f5f9;
+
+    border: 1px solid #e2e8f0;
+}
+
+
+.pg-output-header {
+    background: #e2e8f0;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+
+.pg-output pre {
+    padding: 16px 18px;
+
+    color: #334155;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   CHALLENGES + LESSONS
+========================================= */
+
+.pg-challenges {
+    list-style: none;
+}
+
+
+.pg-challenges li {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+
+    padding: 14px 16px;
+
+    border-radius: 13px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    color: #334155;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+}
+
+
+.pg-challenge-star {
+    flex-shrink: 0;
+}
+
+
+.pg-lessons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.pg-lesson-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+
+    background: #eef2ff;
+
+    color: #4338ca;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.pg-lesson-link:hover {
+    background: #e0e7ff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.pg-nav {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+
+    margin-top: 10px;
+}
+
+
+.pg-nav-link {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.pg-nav-link:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+.pg-nav-link.next {
+    text-align: right;
+}
+
+
+.pg-nav-link small {
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.pg-nav-link span {
+    color: #1e293b;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.pg-back-all {
+    margin-top: 28px;
+
+    text-align: center;
+}
+
+
+.pg-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.pg-button.primary {
+    background: #4f46e5;
+
+    color: white;
+}
+
+
+.pg-button.primary:hover {
+    background: #4338ca;
+
+    transform: translateY(-2px);
+}
+
+
+.pg-button.secondary {
+    background: #eef2ff;
+
+    color: #4f46e5;
+}
+
+
+.pg-button.secondary:hover {
+    background: #e0e7ff;
+}
+
+
+/* =========================================
+   NOT FOUND
+========================================= */
+
+.pg-not-found {
+    max-width: 560px;
+
+    margin: 30px auto;
+
+    text-align: center;
+}
+
+
+.pg-not-found-icon {
+    font-size: 56px;
+
+    margin-bottom: 8px;
+}
+
+
+.pg-not-found h1 {
+    margin-bottom: 10px;
+
+    font-size: 28px;
+
+    color: #1e293b;
+}
+
+
+.pg-not-found p {
+    margin-bottom: 22px;
+
+    color: #64748b;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .pg-hero {
+        padding: 25px 16px 30px;
+    }
+
+
+    .pg-title {
+        gap: 12px;
+    }
+
+
+    .pg-title-icon {
+        width: 60px;
+
+        height: 60px;
+
+        font-size: 30px;
+    }
+
+
+    .pg-title h1 {
+        font-size: 26px;
+    }
+
+
+    .pg-description {
+        font-size: 15px;
+    }
+
+
+    .pg-content {
+        padding: 30px 16px 60px;
+    }
+
+
+    .pg-card {
+        padding: 20px 16px;
+
+        border-radius: 18px;
+    }
+
+
+    .pg-card h2 {
+        font-size: 21px;
+    }
+
+
+    .pg-section-title {
+        font-size: 23px;
+    }
+
+
+    .pg-step h3 {
+        font-size: 18px;
+    }
+
+
+    .pg-text {
+        font-size: 15px;
+    }
+
+
+    .pg-code pre,
+    .pg-output pre {
+        font-size: 13px;
+    }
+
+
+    .pg-code pre {
+        padding: 16px;
+    }
+
+
+    .pg-output pre {
+        padding: 14px 16px;
+    }
+
+
+    .pg-nav {
+        grid-template-columns: 1fr;
+    }
+
+
+    .pg-nav-spacer {
+        display: none;
+    }
+
+
+    .pg-nav-link.next {
+        text-align: left;
+    }
+
+}

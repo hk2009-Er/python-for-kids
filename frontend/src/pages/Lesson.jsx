@@ -25,7 +25,7 @@ class Lesson extends Component {
         this.state = {
             currentLesson: 0,
             completed: false,
-            alreadyCompleted: isTopicCompleted(props.slug),
+            alreadyCompleted: false,
             xpEarned: 0,
             running: false,
             runResult: null,
@@ -37,6 +37,12 @@ class Lesson extends Component {
     componentDidMount() {
 
         this.mounted = true;
+
+        // Read saved progress after hydration so the prerendered HTML matches.
+        if (isTopicCompleted(this.props.slug)) {
+            // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+            this.setState({ alreadyCompleted: true });
+        }
 
         this.unsubscribe = onPythonStatusChange(status => {
             if (this.mounted) {
@@ -141,6 +147,21 @@ class Lesson extends Component {
                 xpEarned: firstTime ? totalPoints : 0
             });
 
+        }
+
+    };
+
+
+    goToLesson = (index) => {
+
+        this.setState({
+            currentLesson: index,
+            completed: false,
+            runResult: null
+        });
+
+        if (typeof window !== "undefined") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
     };
@@ -511,6 +532,68 @@ class Lesson extends Component {
 
 
                     </div>
+
+                </section>
+
+
+                {/* TOPIC SUMMARY: every step on one page, for review */}
+
+                <section className="lesson-summary">
+
+                    <h2>
+                        📚 Everything in {topic.title}
+                    </h2>
+
+                    <p className="lesson-summary-intro">
+                        {topic.description} Here is every step in this
+                        topic in one place, so you can review what you
+                        learned or jump straight to a step.
+                    </p>
+
+                    <ol className="lesson-summary-list">
+
+                        {topic.lessons.map((step, index) => (
+
+                            <li
+                                key={step.id}
+                                className={
+                                    index === this.state.currentLesson
+                                        ? "lesson-summary-item current"
+                                        : "lesson-summary-item"
+                                }
+                            >
+
+                                <div className="lesson-summary-head">
+
+                                    <h3>
+                                        {step.icon} {step.title}
+                                    </h3>
+
+                                    <button
+                                        type="button"
+                                        className="lesson-summary-go"
+                                        onClick={() => this.goToLesson(index)}
+                                    >
+                                        {index === this.state.currentLesson
+                                            ? "You are here"
+                                            : `Go to step ${index + 1} →`}
+                                    </button>
+
+                                </div>
+
+                                <p>
+                                    {step.explanation}
+                                </p>
+
+                                <pre className="lesson-summary-code">
+                                    <code>{step.example}</code>
+                                </pre>
+
+                            </li>
+
+                        ))}
+
+                    </ol>
 
                 </section>
 

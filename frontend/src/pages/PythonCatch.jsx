@@ -102,7 +102,7 @@ class PythonCatch extends Component {
             feedback: null,
             endReason: null,
 
-            bestScore: readBestScore(),
+            bestScore: 0,
             newBest: false,
 
             noQuestions: false
@@ -110,6 +110,10 @@ class PythonCatch extends Component {
     }
 
     componentDidMount() {
+        // Saved best score is read after mount so the prerendered HTML matches.
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({ bestScore: readBestScore() });
+
         document.addEventListener("keydown", this.handleKeyDown);
         document.addEventListener("keyup", this.handleKeyUp);
         document.addEventListener(

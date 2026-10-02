@@ -104,11 +104,10 @@ class Exercise extends Component {
     constructor(props) {
         super(props);
 
-        const exercise = this.getExercise();
-        const draft = exercise ? getDraft(exercise.id) : null;
-
+        // Saved drafts / progress are read in componentDidMount so the
+        // prerendered HTML and the first client render match.
         this.state = {
-            code: draft || STARTER_CODE,
+            code: STARTER_CODE,
             stdin: "",
             output: "",
             error: null,
@@ -120,11 +119,11 @@ class Exercise extends Component {
             showHint: false,
             showAnswer: false,
             result: null,           // null | "success" | "fail"
-            solved: exercise ? isExerciseSolved(exercise.id) : false,
+            solved: false,
             xpGained: 0,
             expected: null,
             actual: "",
-            totalXP: getTotalXP()
+            totalXP: 0
         };
 
         this.editorRef = React.createRef();
@@ -135,6 +134,16 @@ class Exercise extends Component {
     componentDidMount() {
 
         this.mounted = true;
+
+        const exercise = this.getExercise();
+        const draft = exercise ? getDraft(exercise.id) : null;
+
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({
+            code: draft || STARTER_CODE,
+            solved: exercise ? isExerciseSolved(exercise.id) : false,
+            totalXP: getTotalXP()
+        });
 
         this.unsubscribe = onPythonStatusChange(status => {
             if (this.mounted) {

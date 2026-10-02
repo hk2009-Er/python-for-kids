@@ -13,8 +13,15 @@ class Learn extends Component {
 
         this.state = {
             selectedLevel: "All",
-            completedTopics: getCompletedTopics()
+            completedTopics: []
         };
+    }
+
+
+    componentDidMount() {
+        // Read saved progress after hydration so the prerendered HTML matches.
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({ completedTopics: getCompletedTopics() });
     }
 
 

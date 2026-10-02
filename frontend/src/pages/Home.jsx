@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import lessonData from "../data/lessonData";
+
 import "./Home.css";
 
 
@@ -287,6 +289,150 @@ class Home extends Component {
                                 Build awesome projects
                             </p>
 
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                {/* ================================
+                    LEARNING PATH
+                ================================= */}
+
+                <section className="home-path">
+
+                    <div className="home-section-heading">
+
+                        <h2>
+                            The Python Learning Path 🗺️
+                        </h2>
+
+                        <p>
+                            {lessonData.length} topics that take you from
+                            your very first print() to building your own
+                            classes. Each topic has short lessons, practice
+                            exercises you can run in your browser, and a quiz.
+                        </p>
+
+                    </div>
+
+                    <ol className="home-path-list">
+
+                        {lessonData.map((topic, index) => (
+
+                            <li key={topic.slug} className="home-path-item">
+
+                                <span className="home-path-step">
+                                    {index + 1}
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        <Link to={`/lesson/${topic.slug}`}>
+                                            {topic.icon} {topic.title}
+                                        </Link>
+                                        <span className="home-path-level">
+                                            {topic.level}
+                                        </span>
+                                    </h3>
+
+                                    <p>
+                                        {topic.description}
+                                    </p>
+
+                                </div>
+
+                            </li>
+
+                        ))}
+
+                    </ol>
+
+                </section>
+
+
+                {/* ================================
+                    PARENTS & TEACHERS FAQ
+                ================================= */}
+
+                <section className="home-faq">
+
+                    <div className="home-section-heading">
+
+                        <h2>
+                            For Parents and Teachers 👪
+                        </h2>
+
+                        <p>
+                            Answers to the questions we hear most often.
+                        </p>
+
+                    </div>
+
+                    <div className="home-faq-list">
+
+                        <div className="home-faq-item">
+                            <h3>What age is Python for Kids made for?</h3>
+                            <p>
+                                The lessons are written for children aged
+                                about 8 to 14 who can read short paragraphs on
+                                their own. Younger children can follow along
+                                with an adult, and older beginners use the
+                                site too because every idea is explained from
+                                the start.
+                            </p>
+                        </div>
+
+                        <div className="home-faq-item">
+                            <h3>Do we need to install anything?</h3>
+                            <p>
+                                No. Lessons, quizzes and games work in any
+                                modern web browser, and the exercises run real
+                                Python code right on the page. Only the Turtle
+                                Drawing topic suggests a free desktop editor
+                                such as Thonny or IDLE, because drawing
+                                windows can't open inside a browser.
+                            </p>
+                        </div>
+
+                        <div className="home-faq-item">
+                            <h3>Is it free? Does my child need an account?</h3>
+                            <p>
+                                Everything is free and there are no accounts
+                                or sign-ups. Progress such as finished lessons
+                                and quiz scores is saved only in your own
+                                browser, so nothing about your child is sent
+                                to us. The site is supported by advertising,
+                                which is described in our
+                                {" "}<Link to="/privacy">Privacy Policy</Link>.
+                            </p>
+                        </div>
+
+                        <div className="home-faq-item">
+                            <h3>In what order should my child learn?</h3>
+                            <p>
+                                Follow the learning path above from top to
+                                bottom. Each topic only uses ideas from the
+                                topics before it. After a topic, try its
+                                exercises and quiz, then use what you learned
+                                in one of the step-by-step
+                                {" "}<Link to="/projects">projects</Link>, like a
+                                number guessing game or a chatbot.
+                            </p>
+                        </div>
+
+                        <div className="home-faq-item">
+                            <h3>Can teachers use this in class?</h3>
+                            <p>
+                                Yes. Each topic works as a short lesson with a
+                                ready-made quiz at the end, and the coding
+                                games are a fun way to review at the end of a
+                                class. If you have suggestions, we'd love to
+                                hear them on our
+                                {" "}<Link to="/contact">Contact page</Link>.
+                            </p>
                         </div>
 
                     </div>

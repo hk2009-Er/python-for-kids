@@ -71,7 +71,8 @@ class Footer extends Component {
 
                 <div className="footer-bottom">
 
-                    <p>
+                    {/* Year may differ from the prerendered HTML after New Year. */}
+                    <p suppressHydrationWarning>
                         © {new Date().getFullYear()} Python for Kids.
                         All rights reserved.
                     </p>

@@ -117,13 +117,17 @@ class SpacePython extends Component {
             bestStreak: 0,
             paused: false,
             endReason: null,
-            best: loadBest(),
+            best: { score: 0, planet: 0 },
             newBest: false,
             frame: 0
         };
     }
 
     componentDidMount() {
+        // Saved best score is read after mount so the prerendered HTML matches.
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({ best: loadBest() });
+
         document.addEventListener("keydown", this.handleKeyDown);
         document.addEventListener("keyup", this.handleKeyUp);
         window.addEventListener("blur", this.handleBlur);

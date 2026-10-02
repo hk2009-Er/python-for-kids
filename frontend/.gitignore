@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Cloudflare dev files
+.dev.vars
+.wrangler

@@ -623,3 +623,104 @@
 .lesson-practice a:hover {
     text-decoration: underline;
 }
+
+
+/* =========================================================
+   TOPIC SUMMARY
+   ========================================================= */
+
+.lesson-summary {
+    max-width: 900px;
+    margin: -40px auto 0;
+    padding: 0 20px 80px;
+}
+
+.lesson-summary h2 {
+    font-size: 26px;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.lesson-summary-intro {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.lesson-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+}
+
+.lesson-summary-item {
+    min-width: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.lesson-summary-item.current {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.lesson-summary-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.lesson-summary-head h3 {
+    font-size: 19px;
+    color: #1e293b;
+    margin: 0;
+}
+
+.lesson-summary-go {
+    border: 1px solid #c7d2fe;
+    background: #eef2ff;
+    color: #4338ca;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.lesson-summary-go:hover {
+    background: #e0e7ff;
+}
+
+.lesson-summary-item p {
+    color: #475569;
+    line-height: 1.7;
+    margin: 0 0 12px;
+}
+
+.lesson-summary-code {
+    background: #111827;
+    color: #e5e7eb;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: "Fira Code", Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+@media (max-width: 600px) {
+    .lesson-summary-item {
+        padding: 18px;
+    }
+}

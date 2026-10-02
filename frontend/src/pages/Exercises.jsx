@@ -18,8 +18,15 @@ class Exercises extends Component {
         this.state = {
             selectedTopic: "All",
             selectedDifficulty: "All",
-            solved: getSolvedExercises()
+            solved: []
         };
+    }
+
+
+    componentDidMount() {
+        // Read saved progress after hydration so the prerendered HTML matches.
+        // oxlint-disable-next-line react/no-did-mount-set-state -- read browser-only storage after hydration
+        this.setState({ solved: getSolvedExercises() });
     }
 
 
